@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head><meta charset="UTF-8"></head>
+	<body>
+		<div th:fragment="nav-sidebar">
+			<div class="app-menu">
+				<ul class="nav">
+				 <li class="nav-item">
+					<a class="nav-link active" th:href="@{/home/menu}">
+						<span data-feather="home"></span>
+						Dashboard
+					</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" th:href="@{/documents/menu}">
+					  <span data-feather="layers"></span>
+					  Documents
+					</a>
+				  </li>
+				   <li class="nav-item">
+					<a class="nav-link" th:href="@{/events/menu}">
+					  <span data-feather="calendar"></span>
+					  Events
+					</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" th:href="@{/finances/menu}">
+					  <span data-feather="dollar-sign"></span>
+					  Finance
+					</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" th:href="@{/contacts/menu}">
+					  <span data-feather="users"></span>
+					   Contacts
+					</a>
+				  </li>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>

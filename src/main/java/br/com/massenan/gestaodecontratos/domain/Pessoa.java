@@ -2,9 +2,13 @@ package br.com.massenan.gestaodecontratos.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,6 +28,10 @@ public class Pessoa {
 
 	@Column(name = "CPF", nullable = false)
 	private String cpf;
+
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "CD_ENDERECO", nullable = false)
+	private Endereco endereco;
 
 	public Long getId() {
 		return id;
@@ -57,6 +65,14 @@ public class Pessoa {
 		this.cpf = cpf;
 	}
 
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -84,7 +100,7 @@ public class Pessoa {
 
 	@Override
 	public String toString() {
-		return "Pessoa [id=" + id + ", nome=" + nome + ", idade=" + idade + ", cpf=" + cpf + "]";
+		return "Pessoa [id=" + id + ", nome=" + nome + ", idade=" + idade + ", cpf=" + cpf + ", endereco=" + endereco
+				+ "]";
 	}
-
 }
