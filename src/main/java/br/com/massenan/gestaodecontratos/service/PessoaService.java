@@ -1,6 +1,7 @@
 package br.com.massenan.gestaodecontratos.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,7 @@ public class PessoaService {
 		repository.save(pessoa);
 	}
 	
-	public Pessoa findById(Long id) {
+	public Optional<Pessoa> findById(Long id) {
 		return repository.findById(id);
 	}
 	

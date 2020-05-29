@@ -2,12 +2,13 @@ package br.com.massenan.gestaodecontratos.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -23,16 +24,35 @@ public class Pessoa {
 	@Column(name = "NOME", nullable = false)
 	private String nome;
 
+	@Enumerated(EnumType.STRING)
+	@Column(name="PERFIL")
+	private PerfilEnum perfil;
+	
 	@Column(name = "IDADE", nullable = false)
 	private String idade;
 
 	@Column(name = "CPF", nullable = false)
 	private String cpf;
 
+	@Column(name = "TEL_RESIDENCIAL", nullable = true)
+	private String telResidencial;
+
+	@Column(name = "TEL_PRINCIPAL", nullable = true)
+	private String telPrincipal;
+
+	@Column(name = "CELULAR", nullable = true)
+	private String celular;
+
+	@Column(name = "E_MAIL", nullable = true)
+	private String email;
+
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CD_ENDERECO", nullable = false)
 	private Endereco endereco;
-
+	
+	@Column(name = "ATIVO")
+	private boolean ativo;
+	
 	public Long getId() {
 		return id;
 	}

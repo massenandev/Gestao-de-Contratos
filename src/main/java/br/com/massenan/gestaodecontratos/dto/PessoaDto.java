@@ -1,5 +1,7 @@
 package br.com.massenan.gestaodecontratos.dto;
 
+import java.util.List;
+
 import br.com.massenan.gestaodecontratos.domain.Endereco;
 import br.com.massenan.gestaodecontratos.domain.Pessoa;
 
@@ -11,6 +13,10 @@ public class PessoaDto {
 	private String cpf;
 	private Endereco endereco;
 
+	public static List<PessoaDto> parse(List<Pessoa>pessoas){
+		return null;
+	}
+	
 	public static Pessoa parse(PessoaDto pessoaDto) {
 		Pessoa pes = new Pessoa();
 		pes.setCpf(pessoaDto.getCpf());

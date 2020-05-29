@@ -32,8 +32,8 @@ public class PessoaController {
 	public ResponseEntity<?> create(@RequestBody PessoaDto pessoaDto) {
 		
 		try {
-			pessoaService.create(Pessoa.parse(pessoaDto));
-			return new ResponseEntity<>(PessoaDto.parse(pessoaDto.findAll()), HttpStatus.OK);
+			pessoaService.create(PessoaDto.parse(pessoaDto));
+			return new ResponseEntity<>(PessoaDto.parse(pessoaService.findAll()), HttpStatus.OK);
 		}catch(Exception ex) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}

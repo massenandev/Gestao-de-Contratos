@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,7 +16,7 @@ public class Endereco {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "CD_ENDERECO", nullable = false)
 	private Long id;
-
+		
 	@Column(name = "LOGRADOURO", nullable = false)
 	private String logradouro;
 
@@ -30,6 +31,10 @@ public class Endereco {
 
 	@Column(name = "COMPLEMENTO", nullable = false)
 	private String complemento;
+	
+	@ManyToOne
+	@Column(name = "CIDADE", nullable = false)
+	private Cidade cidade;
 
 	public Long getId() {
 		return id;
@@ -79,6 +84,14 @@ public class Endereco {
 		this.complemento = complemento;
 	}
 
+	public Cidade getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -107,6 +120,7 @@ public class Endereco {
 	@Override
 	public String toString() {
 		return "Endereco [id=" + id + ", logradouro=" + logradouro + ", bairro=" + bairro + ", numero=" + numero
-				+ ", cep=" + cep + ", complemento=" + complemento + "]";
+				+ ", cep=" + cep + ", complemento=" + complemento + ", cidade=" + cidade + "]";
 	}
+	
 }
