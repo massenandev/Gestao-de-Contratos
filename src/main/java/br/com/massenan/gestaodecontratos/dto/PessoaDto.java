@@ -19,7 +19,7 @@ public class PessoaDto {
 	private Endereco endereco;
 	private boolean ativo;
 
-	public static List<PessoaDto> parse(List<Pessoa>pessoas){
+	public static List<PessoaDto> parse(List<Pessoa> pessoas){
 		return null;
 	}
 	

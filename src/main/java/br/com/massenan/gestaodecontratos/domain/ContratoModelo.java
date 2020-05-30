@@ -23,7 +23,7 @@ public class ContratoModelo {
 	private Long id;
 	
 	@Column(name = "TIPO", nullable = false)
-	private ContratoTipoEnum tipo;
+	private String tipo;
 
 	@Column(name = "DESCRICAO", nullable = false)
 	private String descricao;
@@ -45,7 +45,7 @@ public class ContratoModelo {
      
     @PrePersist
     public void prePersist() {
-    	dtUltAlt =   LocalDateTime.now();
+    	dtUltAlt   = LocalDateTime.now();
     	dtCadastro = LocalDateTime.now();
     }
 	
@@ -55,10 +55,10 @@ public class ContratoModelo {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public ContratoTipoEnum getTipo() {
+	public String getTipo() {
 		return tipo;
 	}
-	public void setTipo(ContratoTipoEnum tipo) {
+	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 	public String getDescricao() {
