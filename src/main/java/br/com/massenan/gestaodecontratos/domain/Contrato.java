@@ -27,7 +27,7 @@ public class Contrato {
 	private String descricao;
 
 	@Column(name = "TIPO", nullable = false)
-	private ContratoTipoEnum tipo;
+	private String tipo;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CD_PESSOA", nullable = false)
@@ -75,10 +75,10 @@ public class Contrato {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public ContratoTipoEnum getTipo() {
+	public String getTipo() {
 		return tipo;
 	}
-	public void setTipo(ContratoTipoEnum tipo) {
+	public void setTipo(String tipo) {
 		this.tipo = tipo;
 	}
 	public Pessoa getPessoa() {

@@ -93,6 +93,54 @@ public class Pessoa {
 		this.endereco = endereco;
 	}
 
+	public PerfilEnum getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(PerfilEnum perfil) {
+		this.perfil = perfil;
+	}
+
+	public String getTelResidencial() {
+		return telResidencial;
+	}
+
+	public void setTelResidencial(String telResidencial) {
+		this.telResidencial = telResidencial;
+	}
+
+	public String getTelPrincipal() {
+		return telPrincipal;
+	}
+
+	public void setTelPrincipal(String telPrincipal) {
+		this.telPrincipal = telPrincipal;
+	}
+
+	public String getCelular() {
+		return celular;
+	}
+
+	public void setCelular(String celular) {
+		this.celular = celular;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -120,7 +168,8 @@ public class Pessoa {
 
 	@Override
 	public String toString() {
-		return "Pessoa [id=" + id + ", nome=" + nome + ", idade=" + idade + ", cpf=" + cpf + ", endereco=" + endereco
-				+ "]";
+		return "Pessoa [id=" + id + ", nome=" + nome + ", perfil=" + perfil + ", idade=" + idade + ", cpf=" + cpf
+				+ ", telResidencial=" + telResidencial + ", telPrincipal=" + telPrincipal + ", celular=" + celular
+				+ ", email=" + email + ", endereco=" + endereco + ", ativo=" + ativo + "]";
 	}
 }

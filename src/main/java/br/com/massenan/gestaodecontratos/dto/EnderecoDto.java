@@ -1,5 +1,7 @@
 package br.com.massenan.gestaodecontratos.dto;
 
+import java.util.List;
+
 import br.com.massenan.gestaodecontratos.domain.Endereco;
 import br.com.massenan.gestaodecontratos.domain.Pessoa;
 
@@ -12,6 +14,10 @@ public class EnderecoDto {
 	private String cep;
 	private String complemento;
 
+	public static List<EnderecoDto> parse(List<Pessoa>enderecos){
+		return null;
+	}
+	
 	public static Endereco parse(EnderecoDto enderecoDto) {
 		Endereco ende = new Endereco();
 		ende.setBairro(enderecoDto.getBairro());
