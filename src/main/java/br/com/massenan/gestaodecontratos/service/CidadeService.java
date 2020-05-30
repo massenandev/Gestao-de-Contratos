@@ -1,6 +1,7 @@
 package br.com.massenan.gestaodecontratos.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -28,14 +29,12 @@ public class CidadeService {
 		repository.save(cidade);
 	}
 	
-	public Cidade findById(Long id, boolean active) {
-		return repository.findById(id, active);
+	public Optional<Cidade> findById(Long id) {
+		return repository.findById(id);
 	}
 	
 	public void deleteById(Long id) {
-		Cidade cid = new Cidade();
-		cid.setId(id);
-		repository.delete(cid);
+		repository.deleteById(id);
 	}
 	
 	public void update(Cidade cidade) {

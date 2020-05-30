@@ -31,7 +31,7 @@ public class ContratoModeloService {
 	}
 	
 	public void update(ContratoModelo contratoModelo) {
-		repository.saveAndFlush(ContratoModelo);
+		repository.saveAndFlush(contratoModelo);
 	}
 
 }

@@ -25,9 +25,7 @@ public class ContratoService {
 	}
 	
 	public void deleteById(Long id) {
-		Contrato cont = new Contrato();
-		cont.setId(id);
-		repository.delete(cont);
+		repository.deleteById(id);
 	}
 	
 	public void update(Contrato contrato) {

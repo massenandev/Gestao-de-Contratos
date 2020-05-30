@@ -37,6 +37,9 @@ public class Endereco {
 	@JoinColumn(name = "CD_CIDADE", nullable = false)
 	private Cidade cidade;
 
+	@Column(name = "ATIVO", nullable = false)
+	private boolean ativo;
+	
 	public Long getId() {
 		return id;
 	}
@@ -91,6 +94,14 @@ public class Endereco {
 
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
+	}
+
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
 	}
 
 	@Override

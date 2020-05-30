@@ -25,9 +25,7 @@ public class EnderecoService {
 	}
 	
 	public void deleteById(Long id) {
-		Endereco ende = new Endereco();
-		ende.setId(id);
-		repository.delete(ende);
+		repository.deleteById(id);
 	}
 	
 	public void update(Endereco endereco) {

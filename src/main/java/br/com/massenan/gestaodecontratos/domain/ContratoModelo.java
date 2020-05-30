@@ -38,6 +38,9 @@ public class ContratoModelo {
 	@JoinColumn(name = "CD_PESSOA", nullable = false)
 	private Pessoa pessoa;
 	
+	@Column(name = "ATIVO")
+	private boolean ativo;
+	
 	@PreUpdate
     public void preUpdate() {
 		dtUltAlt = LocalDateTime.now();

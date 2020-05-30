@@ -26,9 +26,7 @@ public class OrganizacaoService {
 	}
 	
 	public void deleteById(Long id) {
-		Organizacao org = new Organizacao();
-		org.setId(id);
-		repository.delete(org);
+		repository.deleteById(id);
 	}
 	
 	public void update(Organizacao organizacao) {

@@ -27,9 +27,7 @@ public class PessoaService {
 	}
 	
 	public void deleteById(Long id) {
-		Pessoa pessoa = new Pessoa();
-		pessoa.setId(id);
-		repository.delete(pessoa);
+		repository.deleteById(id);
 	}
 	
 	public void update(Pessoa pessoa) {
