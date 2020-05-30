@@ -6,4 +6,6 @@ import br.com.massenan.gestaodecontratos.domain.Cidade;
 
 public interface CidadeRepository extends JpaRepository<Cidade, Long> {
 
+	Cidade findById(Long id, boolean active);
+
 }

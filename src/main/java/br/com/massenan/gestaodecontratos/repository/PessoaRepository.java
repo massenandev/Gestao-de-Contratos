@@ -6,4 +6,6 @@ import br.com.massenan.gestaodecontratos.domain.Pessoa;
 
 public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
 
+	Pessoa findById(Long id, boolean active);
+
 }

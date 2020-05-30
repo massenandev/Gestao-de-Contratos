@@ -6,4 +6,6 @@ import br.com.massenan.gestaodecontratos.domain.ContratoModelo;
 
 public interface ContratoModeloRepository extends JpaRepository<ContratoModelo, Long> {
 
+	ContratoModelo findById(Long id, boolean active);
+
 }

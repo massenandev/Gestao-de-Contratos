@@ -6,4 +6,6 @@ import br.com.massenan.gestaodecontratos.domain.Endereco;
 
 public interface EnderecoRepository extends JpaRepository<Endereco, Long>{
 
+	Endereco findById(Long id, boolean active);
+
 }
