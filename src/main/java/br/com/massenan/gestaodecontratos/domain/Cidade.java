@@ -1,9 +1,25 @@
 package br.com.massenan.gestaodecontratos.domain;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "TB_CIDADE")
 public class Cidade {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "CD_CIDADE", nullable = false)
 	private Long id;
+	
+	@Column(name = "NOME", nullable = false)
 	private String nome;
+	
+	@Column(name = "UF", nullable = false)
 	private String uf;
 	
 	public Long getId() {

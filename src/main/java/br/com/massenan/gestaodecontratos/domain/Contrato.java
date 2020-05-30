@@ -2,20 +2,53 @@ package br.com.massenan.gestaodecontratos.domain;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "TB_CONTRATO")
 public class Contrato {
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "CD_CONTRATO", nullable = false)
 	private Long id;
+
+	@Column(name = "DESCRICAO", nullable = false)
 	private String descricao;
+
+	@Column(name = "TIPO", nullable = false)
 	private ContratoTipoEnum tipo;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "CD_PESSOA", nullable = false)
 	private Pessoa pessoa;
+	
+	@Column(name = "DATA_CADASTRO", nullable = false)
 	private LocalDateTime dtCadastro;
+	
+	@Column(name = "DATA_ULTIMA_ALTERACAO", nullable = false)
 	private LocalDateTime dtUltAlt;
+	
+	@Column(name = "DATA_VIGOR", nullable = false)
 	private LocalDateTime dataVigor;
+	
+	@Column(name = "DATA_EXPIRACAO", nullable = false)
 	private LocalDateTime dataExpiracao;
+	
+	@Column(name = "DATA_REVOGACAO", nullable = false)
 	private LocalDateTime dataRevogacao;
+	
+	@Column(name = "ATIVO", nullable = false)
 	private boolean ativo;
 	
 	@PreUpdate

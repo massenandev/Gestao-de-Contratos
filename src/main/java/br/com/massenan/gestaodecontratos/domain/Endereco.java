@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
@@ -33,7 +34,7 @@ public class Endereco {
 	private String complemento;
 	
 	@ManyToOne
-	@Column(name = "CIDADE", nullable = false)
+	@JoinColumn(name = "CD_CIDADE", nullable = false)
 	private Cidade cidade;
 
 	public Long getId() {
