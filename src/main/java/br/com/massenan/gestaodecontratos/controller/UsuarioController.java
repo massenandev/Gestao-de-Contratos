@@ -13,7 +13,7 @@ import br.com.massenan.gestaodecontratos.dto.UsuarioDto;
 import br.com.massenan.gestaodecontratos.service.UsuarioService;
 
 @Controller
-@RequestMapping("/usuarios")
+@RequestMapping("/api/usuarios")
 public class UsuarioController {
 	private static final Logger logger = LoggerFactory.getLogger(UsuarioController.class);
 

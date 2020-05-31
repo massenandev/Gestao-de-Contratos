@@ -16,4 +16,8 @@ public class MenuController {
 		return "/pessoa/pessoa";
 	}
 
+	@GetMapping("/usuario/menu")
+	public String usuario() {
+		return "/usuario/usuario";
+	}
 }
