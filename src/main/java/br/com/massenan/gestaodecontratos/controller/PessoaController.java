@@ -9,15 +9,18 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.massenan.gestaodecontratos.domain.Pessoa;
 import br.com.massenan.gestaodecontratos.dto.PessoaDto;
 import br.com.massenan.gestaodecontratos.service.PessoaService;
 
 @Controller
+@RequestMapping("/pessoas")
 public class PessoaController {
 	
 	@Autowired
@@ -26,6 +29,11 @@ public class PessoaController {
 	@GetMapping("/listar")
 	public ResponseEntity<?> findAll() {
 		return ResponseEntity.ok().body(PessoaDto.parse(pessoaService.findAll()));
+	}
+
+	@GetMapping("/buscar/{id}")
+	public ResponseEntity<?> loadById(@PathVariable Long id) {
+		return ResponseEntity.ok().body(PessoaDto.parse(pessoaService.findById(id).get()));
 	}
 
 	@PostMapping(value = "/criar", consumes = MediaType.APPLICATION_JSON_VALUE)
