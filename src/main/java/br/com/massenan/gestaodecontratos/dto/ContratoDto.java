@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import br.com.massenan.gestaodecontratos.domain.Contrato;
+import br.com.massenan.gestaodecontratos.domain.ContratoTipoEnum;
+import br.com.massenan.gestaodecontratos.domain.PerfilEnum;
 import br.com.massenan.gestaodecontratos.domain.Pessoa;
 
 public class ContratoDto {
@@ -27,7 +29,7 @@ public class ContratoDto {
 		Contrato con = new Contrato();
 		con.setId(contratoDto.getId());
 		con.setDescricao(contratoDto.getDescricao());
-		con.setTipo(contratoDto.getTipo());
+		con.setTipo(ContratoTipoEnum.fromText(contratoDto.getTipo()));
 		con.setDtCadastro(contratoDto.getDtCadastro());
 		con.setDtUltAlt(contratoDto.getDtUltAlt());
 		con.setDataVigor(contratoDto.getDataVigor());
@@ -45,7 +47,7 @@ public class ContratoDto {
 		ContratoDto dto = new ContratoDto();
 		dto.setId(contrato.getId());
 		dto.setDescricao(contrato.getDescricao());
-		dto.setTipo(contrato.getTipo());
+		dto.setTipo(contrato.getTipo().getTipo());
 		dto.setDtCadastro(contrato.getDtCadastro());
 		dto.setDtUltAlt(contrato.getDtUltAlt());
 		dto.setDataVigor(contrato.getDataVigor());

@@ -30,7 +30,7 @@ public class Contrato {
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "TIPO", nullable = false)
-	private String tipo;
+	private ContratoTipoEnum tipo;
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "CD_PESSOA", nullable = false)
@@ -92,11 +92,11 @@ public class Contrato {
 		this.descricao = descricao;
 	}
 
-	public String getTipo() {
+	public ContratoTipoEnum getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(String tipo) {
+	public void setTipo(ContratoTipoEnum tipo) {
 		this.tipo = tipo;
 	}
 

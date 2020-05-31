@@ -24,7 +24,7 @@ public class ContratosModeloFantasia {
 		cons1.setDescricao("Descricao 1");
 		cons1.setDtCadastro(LocalDateTime.now());
 		cons1.setDtUltAlt(LocalDateTime.now());
-		cons1.setTipo("Contrato Imobiliário");
+//		cons1.setTipo("Contrato Imobiliário");
 		
 		Pessoa pess1 = new Pessoa();
 		pess1.setId(1l);
@@ -34,7 +34,7 @@ public class ContratosModeloFantasia {
 		cons2.setDescricao("Descricao 2");
 		cons2.setDtCadastro(LocalDateTime.now());
 		cons2.setDtUltAlt(LocalDateTime.now());
-		cons2.setTipo("Contrato Imobiliário");
+//		cons2.setTipo("Contrato Imobiliário");
 		
 		Pessoa pess2 = new Pessoa();
 		pess2.setId(2l);
@@ -44,7 +44,7 @@ public class ContratosModeloFantasia {
 		cons3.setDescricao("Descricao 3");
 		cons3.setDtCadastro(LocalDateTime.now());
 		cons3.setDtUltAlt(LocalDateTime.now());
-		cons3.setTipo("Contrato Imobiliário");
+//		cons3.setTipo("Contrato Imobiliário");
 		
 		Pessoa pess3 = new Pessoa();
 		pess3.setId(3l);
@@ -54,7 +54,7 @@ public class ContratosModeloFantasia {
 		cons4.setDescricao("Descricao 4");
 		cons4.setDtCadastro(LocalDateTime.now());
 		cons4.setDtUltAlt(LocalDateTime.now());
-		cons4.setTipo("Contrato Imobiliário");
+//		cons4.setTipo("Contrato Imobiliário");
 		
 		Pessoa pess4 = new Pessoa();
 		pess4.setId(4l);

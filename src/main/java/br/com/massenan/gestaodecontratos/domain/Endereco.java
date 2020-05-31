@@ -1,5 +1,7 @@
 package br.com.massenan.gestaodecontratos.domain;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,6 +34,12 @@ public class Endereco {
 
 	@Column(name = "COMPLEMENTO", nullable = false)
 	private String complemento;
+	
+	@Column(name = "DATA_CADASTRO", nullable = false)
+	private LocalDateTime dtCadastro;
+
+	@Column(name = "DATA_ULTIMA_ALTERACAO", nullable = false)
+	private LocalDateTime dtUltAlt;
 	
 	@ManyToOne
 	@JoinColumn(name = "CD_CIDADE", nullable = false)
@@ -104,6 +112,22 @@ public class Endereco {
 		this.ativo = ativo;
 	}
 
+	public LocalDateTime getDtCadastro() {
+		return dtCadastro;
+	}
+
+	public void setDtCadastro(LocalDateTime dtCadastro) {
+		this.dtCadastro = dtCadastro;
+	}
+
+	public LocalDateTime getDtUltAlt() {
+		return dtUltAlt;
+	}
+
+	public void setDtUltAlt(LocalDateTime dtUltAlt) {
+		this.dtUltAlt = dtUltAlt;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -132,7 +156,10 @@ public class Endereco {
 	@Override
 	public String toString() {
 		return "Endereco [id=" + id + ", logradouro=" + logradouro + ", bairro=" + bairro + ", numero=" + numero
-				+ ", cep=" + cep + ", complemento=" + complemento + ", cidade=" + cidade + "]";
+				+ ", cep=" + cep + ", complemento=" + complemento + ", dtCadastro=" + dtCadastro + ", dtUltAlt="
+				+ dtUltAlt + ", cidade=" + cidade + ", ativo=" + ativo + "]";
 	}
+
+	
 	
 }

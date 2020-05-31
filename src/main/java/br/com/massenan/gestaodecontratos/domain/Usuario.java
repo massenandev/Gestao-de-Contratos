@@ -4,36 +4,40 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "TB_ORGANIZACAO")
-public class Organizacao {
-
+@Table(name = "TB_USUARIO")
+public class Usuario {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "CD_ORGANIZACAO", nullable = false)
+	@Column(name = "CD_USUARIO", nullable = false)
 	private Long id;
 	
-	@Column(name = "NOME_FANTASIA", nullable = false)
-	private String nomeFantasia;
+	@Enumerated(EnumType.STRING)
+	@Column(name="PERFIL")
+	private PerfilEnum perfil;
+
+	@Column(name = "USERNAME", nullable = false)
+	private String usename;
 	
-	@Column(name = "NOME_REGISTRO", nullable = true)
-	private String nomeRegistro;
-	
-	@Column(name = "CNPJ", nullable = false)
-	private String cnpj;
-	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "CD_ENDERECO", nullable = false)
-	private Endereco endereco;
-	
+	@Column(name = "SENHA", nullable = false)
+	private String senha;
+
+	@Column(name = "PENDENTE", nullable = false)
+	private boolean pendente;
+
 	@Column(name = "DATA_CADASTRO", nullable = false)
 	private LocalDateTime dtCadastro;
 
@@ -43,35 +47,39 @@ public class Organizacao {
 	@Column(name = "ATIVO", nullable = false)
 	private boolean ativo;
 	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="CD_USUARIO_CADASTRO", nullable=true)
+	private Usuario usuario;
+	
+	@PreUpdate
+	public void preUpdate() {
+		dtUltAlt = LocalDateTime.now();
+	}
+
+	@PrePersist
+	public void prePersist() {
+		dtUltAlt = LocalDateTime.now();
+		dtCadastro = LocalDateTime.now();
+	}
+	
+	//GETTERS AND SETTERS
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getNomeFantasia() {
-		return nomeFantasia;
+	public String getUsename() {
+		return usename;
 	}
-	public void setNomeFantasia(String nomeFantasia) {
-		this.nomeFantasia = nomeFantasia;
+	public void setUsename(String usename) {
+		this.usename = usename;
 	}
-	public String getNomeRegistro() {
-		return nomeRegistro;
+	public String getSenha() {
+		return senha;
 	}
-	public void setNomeRegistro(String nomeRegistro) {
-		this.nomeRegistro = nomeRegistro;
-	}
-	public String getCnpj() {
-		return cnpj;
-	}
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
-	}
-	public Endereco getEndereco() {
-		return endereco;
-	}
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 	
 	public LocalDateTime getDtCadastro() {
@@ -92,6 +100,18 @@ public class Organizacao {
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
 	}
+	public boolean isPendente() {
+		return pendente;
+	}
+	public void setPendente(boolean pendente) {
+		this.pendente = pendente;
+	}
+	public PerfilEnum getPerfil() {
+		return perfil;
+	}
+	public void setPerfil(PerfilEnum perfil) {
+		this.perfil = perfil;
+	}
 	
 	@Override
 	public int hashCode() {
@@ -100,7 +120,6 @@ public class Organizacao {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
-	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -109,7 +128,7 @@ public class Organizacao {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Organizacao other = (Organizacao) obj;
+		Usuario other = (Usuario) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -119,14 +138,9 @@ public class Organizacao {
 	}
 	@Override
 	public String toString() {
-		return "Organizacao [id=" + id + ", nomeFantasia=" + nomeFantasia + ", nomeRegistro=" + nomeRegistro + ", cnpj="
-				+ cnpj + ", endereco=" + endereco + ", dtCadastro=" + dtCadastro + ", dtUltAlt=" + dtUltAlt + ", ativo="
-				+ ativo + ", getId()=" + getId() + ", getNomeFantasia()=" + getNomeFantasia() + ", getNomeRegistro()="
-				+ getNomeRegistro() + ", getCnpj()=" + getCnpj() + ", getEndereco()=" + getEndereco()
-				+ ", getDtCadastro()=" + getDtCadastro() + ", getDtUltAlt()=" + getDtUltAlt() + ", isAtivo()="
-				+ isAtivo() + ", hashCode()=" + hashCode() + ", getClass()=" + getClass() + ", toString()="
-				+ super.toString() + "]";
+		return "Usuario [id=" + id + ", perfil=" + perfil + ", usename=" + usename + ", senha=" + senha + ", pendente="
+				+ pendente + ", dtCadastro=" + dtCadastro + ", dtUltAlt=" + dtUltAlt + ", ativo=" + ativo + "]";
 	}
 	
-
+	
 }

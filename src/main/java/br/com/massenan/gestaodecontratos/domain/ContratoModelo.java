@@ -26,7 +26,7 @@ public class ContratoModelo {
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "TIPO", nullable = false)
-	private String tipo;
+	private ContratoTipoEnum tipo;
 
 	@Column(name = "DESCRICAO", nullable = false)
 	private String descricao;
@@ -63,12 +63,20 @@ public class ContratoModelo {
 		this.id = id;
 	}
 
-	public String getTipo() {
+	public ContratoTipoEnum getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(String tipo) {
+	public void setTipo(ContratoTipoEnum tipo) {
 		this.tipo = tipo;
+	}
+
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
 	}
 
 	public String getDescricao() {

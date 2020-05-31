@@ -28,7 +28,7 @@ public class PessoasFantasia {
 		pess1.setIdade("11");
 		pess1.setTelPrincipal("123456789");
 		pess1.setTelResidencial("132456789");
-		pess1.setPerfil("Gestor");
+//		pess1.setPerfil("Gestor");
 
 		Endereco end1 = new Endereco();
 		end1.setId(1l);
@@ -43,7 +43,7 @@ public class PessoasFantasia {
 		pess2.setIdade("22");
 		pess2.setTelPrincipal("14725839");
 		pess2.setTelResidencial("369258147");
-		pess2.setPerfil("Gestor");
+//		pess2.setPerfil("Gestor");
 
 		Endereco end2 = new Endereco();
 		end2.setId(2l);
@@ -58,7 +58,7 @@ public class PessoasFantasia {
 		pess3.setIdade("55");
 		pess3.setTelPrincipal("123456789");
 		pess3.setTelResidencial("132456789");
-		pess3.setPerfil("Gestor");
+//		pess3.setPerfil("Gestor");
 
 		Endereco end3 = new Endereco();
 		end3.setId(3l);
@@ -73,7 +73,7 @@ public class PessoasFantasia {
 		pess4.setIdade("55");
 		pess4.setTelPrincipal("123456789");
 		pess4.setTelResidencial("132456789");
-		pess4.setPerfil("Gestor");
+//		pess4.setPerfil("Gestor");
 
 		Endereco end4 = new Endereco();
 		end4.setId(4l);

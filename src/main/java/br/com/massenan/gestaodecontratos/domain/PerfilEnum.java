@@ -5,7 +5,7 @@ import java.util.NoSuchElementException;
 
 public enum PerfilEnum {
 	
-	GESTOR_ADM("Gestor Administrador", 0), GESTOR("Gestor", 1);
+	GESTOR_ADM("Gestor Administrador", 0), GESTOR("Gestor", 1), ADMIN("Administrador", 2);
 
 	private final String tipo;
 	private final int id;

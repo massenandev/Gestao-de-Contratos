@@ -1,5 +1,7 @@
 package br.com.massenan.gestaodecontratos.domain;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -9,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -23,10 +26,6 @@ public class Pessoa {
 
 	@Column(name = "NOME", nullable = false)
 	private String nome;
-
-	@Enumerated(EnumType.STRING)
-	@Column(name="PERFIL")
-	private PerfilEnum perfil;
 	
 	@Column(name = "IDADE", nullable = false)
 	private String idade;
@@ -46,13 +45,24 @@ public class Pessoa {
 	@Column(name = "E_MAIL", nullable = true)
 	private String email;
 
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "CD_ENDERECO", nullable = false)
 	private Endereco endereco;
 	
+	@Column(name = "DATA_CADASTRO", nullable = false)
+	private LocalDateTime dtCadastro;
+
+	@Column(name = "DATA_ULTIMA_ALTERACAO", nullable = false)
+	private LocalDateTime dtUltAlt;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "CD_USUARIO", nullable = false)
+	private Usuario usuario;
+	
 	@Column(name = "ATIVO")
 	private boolean ativo;
-	
+
+	//GETTERS AND SETTERS
 	public Long getId() {
 		return id;
 	}
@@ -85,22 +95,6 @@ public class Pessoa {
 		this.cpf = cpf;
 	}
 
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-
-	public PerfilEnum getPerfil() {
-		return perfil;
-	}
-
-	public void setPerfil(PerfilEnum perfil) {
-		this.perfil = perfil;
-	}
-
 	public String getTelResidencial() {
 		return telResidencial;
 	}
@@ -131,6 +125,30 @@ public class Pessoa {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	public LocalDateTime getDtCadastro() {
+		return dtCadastro;
+	}
+
+	public void setDtCadastro(LocalDateTime dtCadastro) {
+		this.dtCadastro = dtCadastro;
+	}
+
+	public LocalDateTime getDtUltAlt() {
+		return dtUltAlt;
+	}
+
+	public void setDtUltAlt(LocalDateTime dtUltAlt) {
+		this.dtUltAlt = dtUltAlt;
 	}
 
 	public boolean isAtivo() {
@@ -168,12 +186,11 @@ public class Pessoa {
 
 	@Override
 	public String toString() {
-		return "Pessoa [id=" + id + ", nome=" + nome + ", perfil=" + perfil + ", idade=" + idade + ", cpf=" + cpf
-				+ ", telResidencial=" + telResidencial + ", telPrincipal=" + telPrincipal + ", celular=" + celular
-				+ ", email=" + email + ", endereco=" + endereco + ", ativo=" + ativo + "]";
+		return "Pessoa [id=" + id + ", nome=" + nome + ", idade=" + idade + ", cpf=" + cpf + ", telResidencial="
+				+ telResidencial + ", telPrincipal=" + telPrincipal + ", celular=" + celular + ", email=" + email
+				+ ", endereco=" + endereco + ", dtCadastro=" + dtCadastro + ", dtUltAlt=" + dtUltAlt + ", ativo="
+				+ ativo + "]";
 	}
 
-	public void setPerfil(String string) {
-		
-	}
+	
 }
