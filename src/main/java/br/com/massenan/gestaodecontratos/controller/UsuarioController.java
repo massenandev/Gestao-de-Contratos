@@ -25,7 +25,7 @@ public class UsuarioController {
 		usr.setPendente(true);
 		usr.setPerfil(PerfilEnum.ADMIN);
 		usr.setSenha("123456");
-		usr.setUsename("RaR");
+		usr.setUsername("Leticia");
 		service.create(usr);
 		return ResponseEntity.ok().body(UsuarioDto.parse(service.findAll()));
 	}

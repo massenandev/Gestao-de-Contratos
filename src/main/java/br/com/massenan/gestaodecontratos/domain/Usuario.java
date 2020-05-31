@@ -30,7 +30,7 @@ public class Usuario {
 	private PerfilEnum perfil;
 
 	@Column(name = "USERNAME", nullable = false)
-	private String usename;
+	private String username;
 	
 	@Column(name = "SENHA", nullable = false)
 	private String senha;
@@ -69,12 +69,23 @@ public class Usuario {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getUsename() {
-		return usename;
+	
+	public String getUsername() {
+		return username;
 	}
-	public void setUsename(String usename) {
-		this.usename = usename;
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	public String getSenha() {
 		return senha;
 	}
@@ -138,7 +149,7 @@ public class Usuario {
 	}
 	@Override
 	public String toString() {
-		return "Usuario [id=" + id + ", perfil=" + perfil + ", usename=" + usename + ", senha=" + senha + ", pendente="
+		return "Usuario [id=" + id + ", perfil=" + perfil + ", usename=" + username + ", senha=" + senha + ", pendente="
 				+ pendente + ", dtCadastro=" + dtCadastro + ", dtUltAlt=" + dtUltAlt + ", ativo=" + ativo + "]";
 	}
 	

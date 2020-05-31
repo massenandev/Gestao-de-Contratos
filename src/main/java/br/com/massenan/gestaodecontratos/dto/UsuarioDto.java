@@ -11,7 +11,7 @@ public class UsuarioDto {
 	
 	private Long id;
 	private String perfil;
-	private String usename;
+	private String username;
 	private String senha;
 	private boolean pendente;
 	private LocalDateTime dtCadastro;
@@ -24,7 +24,7 @@ public class UsuarioDto {
 		usr.setPendente(true);
 		usr.setPerfil(PerfilEnum.fromText(dto.getPerfil()));
 		usr.setSenha(dto.getSenha());
-		usr.setUsename(dto.getUsename());
+		usr.setUsername(dto.getUsername());
 		return usr;
 	}
 	
@@ -42,7 +42,7 @@ public class UsuarioDto {
 		dto.setId(usuario.getId());
 		dto.setPendente(usuario.isPendente());
 		dto.setPerfil(usuario.getPerfil().getTipo());
-		dto.setUsename(usuario.getUsename());
+		dto.setUsername(usuario.getUsername());
 		return dto;
 	}
 	
@@ -58,12 +58,15 @@ public class UsuarioDto {
 	public void setPerfil(String perfil) {
 		this.perfil = perfil;
 	}
-	public String getUsename() {
-		return usename;
+	
+	public String getUsername() {
+		return username;
 	}
-	public void setUsename(String usename) {
-		this.usename = usename;
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
+
 	public String getSenha() {
 		return senha;
 	}
