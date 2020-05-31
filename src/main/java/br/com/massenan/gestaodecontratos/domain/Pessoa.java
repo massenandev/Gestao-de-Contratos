@@ -172,4 +172,8 @@ public class Pessoa {
 				+ ", telResidencial=" + telResidencial + ", telPrincipal=" + telPrincipal + ", celular=" + celular
 				+ ", email=" + email + ", endereco=" + endereco + ", ativo=" + ativo + "]";
 	}
+
+	public void setPerfil(String string) {
+		
+	}
 }

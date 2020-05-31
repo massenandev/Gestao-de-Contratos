@@ -12,43 +12,43 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import br.com.massenan.gestaodecontratos.dto.PessoaDto;
-import br.com.massenan.gestaodecontratos.service.PessoaService;
+import br.com.massenan.gestaodecontratos.dto.ContratoDto;
+import br.com.massenan.gestaodecontratos.service.ContratoService;
 
 @Controller
-@RequestMapping("/pessoas")
-public class PessoaController {
+@RequestMapping("/contratos")
+public class ContratoController {
 
 	@Autowired
-	private PessoaService pessoaService;
+	private ContratoService contratoService;
 
 	@GetMapping("/listar")
 	public ResponseEntity<?> findAll() {
-		return ResponseEntity.ok().body(PessoaDto.parse(pessoaService.findAll()));
+		return ResponseEntity.ok().body(ContratoDto.parse(contratoService.findAll()));
 	}
 
 	@GetMapping("/buscar/{id}")
 	public ResponseEntity<?> loadById(@PathVariable Long id) {
-		return ResponseEntity.ok().body(PessoaDto.parse(pessoaService.findById(id).get()));
+		return ResponseEntity.ok().body(ContratoDto.parse(contratoService.findById(id).get()));
 	}
 
 	@PostMapping(value = "/criar", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> create(@RequestBody PessoaDto pessoaDto) {
+	public ResponseEntity<?> create(@RequestBody ContratoDto contratoDto) {
 
 		try {
-			pessoaService.create(PessoaDto.parse(pessoaDto));
-			return new ResponseEntity<>(PessoaDto.parse(pessoaService.findAll()), HttpStatus.OK);
+			contratoService.create(ContratoDto.parse(contratoDto));
+			return new ResponseEntity<>(ContratoDto.parse(contratoService.findAll()), HttpStatus.OK);
 		} catch (Exception ex) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
 	@PutMapping(value = "/atualizar", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> update(PessoaDto pessoaDto) {
+	public ResponseEntity<?> update(ContratoDto contratoDto) {
 
 		try {
-			pessoaService.update(PessoaDto.parse(pessoaDto));
-			return ResponseEntity.ok("Usuário atualizado com sucesso!");
+			contratoService.update(ContratoDto.parse(contratoDto));
+			return ResponseEntity.ok("Contrato atualizado com sucesso!");
 		} catch (Exception ex) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
