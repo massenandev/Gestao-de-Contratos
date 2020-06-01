@@ -14,7 +14,7 @@ public class EnderecoDto {
 	private String cep;
 	private String complemento;
 
-	public static List<EnderecoDto> parse(List<Pessoa>enderecos){
+	public static List<EnderecoDto> parse(List<Endereco>enderecos){
 		return null;
 	}
 	

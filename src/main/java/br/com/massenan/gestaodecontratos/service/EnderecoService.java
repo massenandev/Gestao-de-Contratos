@@ -1,6 +1,7 @@
 package br.com.massenan.gestaodecontratos.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -22,6 +23,10 @@ public class EnderecoService {
 	
 	public Endereco findById(Long id, boolean active) {
 		return repository.findById(id, active);
+	}
+	
+	public Optional<Endereco> findById(Long id) {
+		return repository.findById(id);
 	}
 	
 	public void deleteById(Long id) {

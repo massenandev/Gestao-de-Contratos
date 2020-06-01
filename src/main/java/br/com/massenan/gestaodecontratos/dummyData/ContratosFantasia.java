@@ -1,4 +1,4 @@
-package br.com.massenan.gestaodecontratos.utils;
+package br.com.massenan.gestaodecontratos.dummyData;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

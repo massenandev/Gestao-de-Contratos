@@ -12,43 +12,43 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import br.com.massenan.gestaodecontratos.dto.PessoaDto;
-import br.com.massenan.gestaodecontratos.service.PessoaService;
+import br.com.massenan.gestaodecontratos.dto.EnderecoDto;
+import br.com.massenan.gestaodecontratos.service.EnderecoService;
 
 @Controller
-@RequestMapping("/pessoas")
-public class PessoaController {
+@RequestMapping("/enderecos")
+public class EnderecoController {
 
 	@Autowired
-	private PessoaService pessoaService;
-
+	private EnderecoService enderecoService;
+	
 	@GetMapping("/listar")
 	public ResponseEntity<?> findAll() {
-		return ResponseEntity.ok().body(PessoaDto.parse(pessoaService.findAll()));
+		return ResponseEntity.ok().body(EnderecoDto.parse(enderecoService.findAll()));
 	}
 
 	@GetMapping("/buscar/{id}")
 	public ResponseEntity<?> loadById(@PathVariable Long id) {
-		return ResponseEntity.ok().body(PessoaDto.parse(pessoaService.findById(id).get()));
+		return ResponseEntity.ok().body(EnderecoDto.parse(enderecoService.findById(id).get()));
 	}
 
 	@PostMapping(value = "/criar", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> create(@RequestBody PessoaDto pessoaDto) {
+	public ResponseEntity<?> create(@RequestBody EnderecoDto enderecoDto) {
 
 		try {
-			pessoaService.create(PessoaDto.parse(pessoaDto));
-			return new ResponseEntity<>(PessoaDto.parse(pessoaService.findAll()), HttpStatus.OK);
+			enderecoService.create(EnderecoDto.parse(enderecoDto));
+			return new ResponseEntity<>(EnderecoDto.parse(enderecoService.findAll()), HttpStatus.OK);
 		} catch (Exception ex) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
 
 	@PutMapping(value = "/atualizar", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> update(PessoaDto pessoaDto) {
+	public ResponseEntity<?> update(EnderecoDto enderecoDto) {
 
 		try {
-			pessoaService.update(PessoaDto.parse(pessoaDto));
-			return ResponseEntity.ok("Pessoa atualizada com sucesso!");
+			enderecoService.update(EnderecoDto.parse(enderecoDto));
+			return ResponseEntity.ok("Endereço atualizado com sucesso!");
 		} catch (Exception ex) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}

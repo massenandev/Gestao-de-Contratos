@@ -20,4 +20,14 @@ public class MenuController {
 	public String usuario() {
 		return "/usuario/usuario";
 	}
+	
+	@GetMapping("/cidade/menu")
+	public String cidade() {
+		return "/cidade/cidade";
+	}
+	
+	@GetMapping("/endereco/menu")
+	public String endereco() {
+		return "/endereco/endereco";
+	}
 }

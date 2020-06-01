@@ -1,4 +1,4 @@
-package br.com.massenan.gestaodecontratos.utils;
+package br.com.massenan.gestaodecontratos.dummyData;
 
 import java.util.ArrayList;
 import java.util.List;
