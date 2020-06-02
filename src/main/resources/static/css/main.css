@@ -94,7 +94,6 @@
 
 
 
-
 /* for table */
 .align-tb-center {
   text-align: center;
@@ -198,9 +197,12 @@
 
 
 
-
-
-
+img {
+    vertical-align: middle;
+    border-style: none;
+     width: 15px;
+  height: 15px;
+}
 
 
 
