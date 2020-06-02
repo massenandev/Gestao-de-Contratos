@@ -40,7 +40,7 @@ public class CidadeController {
 		return ResponseEntity.ok().body(CidadeDto.parse(cidadeService.findById(id).get()));
 	}
 
-	@PostMapping(value = "/criar", consumes = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping("/criar")
 	public ResponseEntity<?> create(@RequestBody CidadeDto cidadeDto) {
 
 		try {

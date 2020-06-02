@@ -4,6 +4,24 @@
 	<body>
 		<div layout:fragment="body">	
 			<div class="container app-body">
+				<div>
+					<div id="messageID"></div>
+					<ul class="nav justify-content-end">
+					  <li class="nav-item">
+						<a class="nav-link" href="#" id="btnAbrirModalID">
+							<span class="feather-action-button" data-feather="plus-square"></span>
+							Cadastrar
+						</a>
+					  </li>
+					  <li class="nav-item">
+						<a class="nav-link" href="#">
+							<span data-feather="file"></span>
+							Relatório
+						</a>
+					  </li>
+					</ul>
+				</div>
+				<!-- TABELA DE CIDADES -->
 				<table class="table" id="tblCidadesID">
 				  <thead>
 				    <tr>
@@ -15,6 +33,29 @@
 				  <tbody>
 				  </tbody>
 				</table>
+								
+				<!-- MODAL CADASTRO DE CIDADE -->
+				<div id="modalCadastroID" class="cp-modal">
+					<div class="cp-modal-content">
+						<div class="cp-modal-title">
+							<span>Cadastro de Cidade</span><span class="cp-modal-close">x</span>
+						</div>
+						<div id="msgCadCidade"></div>
+						<div class="cp-modal-body">
+			    			 <div class="form-group">
+							     <label for="usernameID">Cidade</label>
+							  	 <input type="text" class="form-control form-control-sm" id="cidadeID" maxlength="100">
+							 </div>
+							 <div class="form-group">
+							    <label for="senhaID">UF</label>
+							    <input type="text" class="form-control form-control-sm" id="ufID" maxlength="8">
+							 </div>
+			    			 <button id="cadastraCidadeID" type="submit" class="btn btn-primary btn-sm">Cadastrar</button>
+					  		 <button id="cancelaCidadeID" type="button" class="btn btn-secondary btn-sm">Cancelar</button>
+						</div>
+				   </div>
+				</div>
+				
 			</div>
 		</div>
 	</body>

@@ -1,5 +1,6 @@
 package br.com.massenan.gestaodecontratos.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import br.com.massenan.gestaodecontratos.domain.Cidade;
@@ -11,7 +12,9 @@ public class CidadeDto {
 	private String uf;
 	
 	public static List<CidadeDto> parse(List<Cidade> cidades) {
-		return null;
+		List<CidadeDto>list = new ArrayList<CidadeDto>();
+		cidades.forEach(c -> list.add(parse(c)));
+		return list;
 	}
 
 	public static Cidade parse(CidadeDto cidadeDto) {
