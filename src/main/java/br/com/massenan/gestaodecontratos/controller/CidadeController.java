@@ -1,5 +1,7 @@
 package br.com.massenan.gestaodecontratos.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -16,15 +18,21 @@ import br.com.massenan.gestaodecontratos.dto.CidadeDto;
 import br.com.massenan.gestaodecontratos.service.CidadeService;
 
 @Controller
-@RequestMapping("/cidades")
+@RequestMapping("/api/cidades")
 public class CidadeController {
+	private static final Logger logger = LoggerFactory.getLogger(CidadeController.class);
 
 	@Autowired
 	private CidadeService cidadeService;
 
 	@GetMapping("/listar")
 	public ResponseEntity<?> findAll() {
-		return ResponseEntity.ok().body(CidadeDto.parse(cidadeService.findAll()));
+		try {
+			return ResponseEntity.ok().body(CidadeDto.parse(cidadeService.findAll()));
+		} catch (Exception ex) {
+			logger.error("[CARREGANDO-TODAS-AS-CIDADES]", ex.fillInStackTrace());
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 	@GetMapping("/buscar/{id}")

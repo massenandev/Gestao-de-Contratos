@@ -4,8 +4,19 @@
 	<body>
 		<div layout:fragment="body">	
 			<div class="container app-body">
-				cidade
+				<table class="table" id="tblCidadesID">
+				  <thead>
+				    <tr>
+				      <th scope="col">Nome</th>
+				      <th scope="col">UF</th>
+				      <th scope="col">Alterar</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				  </tbody>
+				</table>
 			</div>
 		</div>
 	</body>
 </html>
+<script th:src="@{/js/domain/cidade.js}"></script>

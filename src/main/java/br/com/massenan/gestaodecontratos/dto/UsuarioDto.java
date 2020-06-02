@@ -28,7 +28,7 @@ public class UsuarioDto {
 		return usr;
 	}
 	
-	public static List<UsuarioDto> parse(List<Usuario>usuarios){
+	public static List<UsuarioDto> parse(List<Usuario> usuarios){
 		List<UsuarioDto>list = new ArrayList<UsuarioDto>();
 		usuarios.forEach(u -> list.add(parse(u)));
 		return list;
