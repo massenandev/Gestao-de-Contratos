@@ -27,7 +27,7 @@ public class Pessoa {
 	@Column(name = "NOME", nullable = false)
 	private String nome;
 
-	@Column(name = "DATA_NASCIMENTO", nullable = false)
+	@Column(name = "DATA_NASCIMENTO", nullable = true)
 	private String dtNascimento;
 
 	@Column(name = "CPF", nullable = false)

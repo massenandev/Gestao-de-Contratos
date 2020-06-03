@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	listarPessoass();
+	listarPessoas();
 	initModalCadPessoa();
 	cadPessoa();
 });
@@ -7,7 +7,7 @@ $(document).ready(function(){
 function listarPessoas(){
 	$.ajax({
 		type: 'GET',
-		url: 'http://localhost:8080/api/pessoas/listar',
+		url: 'http://localhost:8080/pessoas/listar',
 		cache: false,
 		timeOut: 600000,
 		contentType: "application/json; charset=utf-8",
@@ -56,35 +56,41 @@ function cadastrarPessoaAjax(pessoa){
 }
 
 function initModalCadPessoa(){
-	var modalObject = {'modal':'#modalCadastroID','width':'16%', 'open':'#btnAbrirModalID', 'close':'.cp-modal-close', 'cancel':'#cancelaPessoaID'};
-	var fields      = ['#nomeID,'#perfilID','#dtNascimID', '#cpfID', '#telResidID', 
-						'#telPrinID', '#celularID', '#emailID', '#usrCadastrouID', '#ativoID'];
+	var modalObject = {'modal':'#modalCadastroID','width':'30%', 'open':'#btnAbrirModalID', 'close':'.cp-modal-close', 'cancel':'#cancelaPessoaID'};
+	var fields      = ['#nomeID','#perfilID','#dtNascimID', '#cpfID', '#telResidID','#telPrinID', '#celularID', '#emailID', '#usrCadastrouID', '#ativoID'];
 	cpModal(modalObject, fields);
 }
 
 function validar(){
-	var nome = $('#nomeID').val();
-	var perfil = $('#perfilID').val();
-	var dtNascim     = $('#dtNascimID').val();
-	var cpf     = $('#cpfID').val();
-	var telResid     = $('#telResidID').val();
+	var nome 		= $('#nomeID').val();
+	var perfil 		= $('#perfilID').val();
+	var dtNasc      = $('#dtNascimID').val();
+	var cpf     	= $('#cpfID').val();
+	var telResid    = $('#telResidID').val();
 	var telPrin     = $('#telPrinID').val();
 	var celular     = $('#celularID').val();
-	var email     = $('#emailID').val();
-	var usuario     = $('#usrCadastrouID').val();
-	var ativo     = $('#ativoID').val();
+	var email     	= $('#emailID').val();
 	
-	if(nome == '' & perfil == '' & dtNascim == '' & cpf == '' & 
-			telPrin == '' & email == '' & usuario == '' & ativo == ''){
+	var json = '{"id":"null","nome":"null","perfil":"null","dtNascim":"null","cpf":"null","telResid":"null","telPrin":"null","celular":"null","email":"null","usuario":"null","ativo":"null"}';
+	
+	var obj      = JSON.parse(json);
+	obj.nome     = nome;
+	obj.perfil   = perfil;
+	obj.dtNasc   = dtNasc;
+	obj.cpf      = cpf;
+	obj.telPrin  = telPrin;
+	obj.telResid = telResid;
+	obj.celular  = celular;
+	obj.email    = email;
+	
+
+	if(nome == '' & perfil == '' & cpf == '' & telPrin == '' & email == ''){
 		showMessageWarning('#msgCadPessoa', 'Informe todos os campos.');
 		return null;
 	}else {
-		return '{"id":"'+null+'","nome":"'+nome+'","perfil":"'+perfil+'", 
-		"dtNascim":"'+dtNascim+'","cpf":"'+cpf+'","telResid":"'+telResidencial+'",
-		"telPrin":"'+telPrincipal+'","celular":"'+celular+'", "email":"'+email+'",
-		"usuario":"'+usuario+'","ativo":"'+ativo+'"}';
-		
+		return obj;
 	}
+	
 }
 
 function buildTable(pessoas){
