@@ -4,84 +4,98 @@
 	<body>
 		<div layout:fragment="body">	
 			<div class="container app-body">
-				<table class="table">
+				<div>
+					<div id="messageID"></div>
+					<ul class="nav justify-content-end">
+					  <li class="nav-item">
+						<a class="nav-link" href="#" id="btnAbrirModalID">
+							<span class="feather-action-button" data-feather="plus-square"></span>
+							Cadastrar
+						</a>
+					  </li>
+					  <li class="nav-item">
+						<a class="nav-link" href="#">
+							<span data-feather="file"></span>
+							Relatório
+						</a>
+					  </li>
+					</ul>
+				</div>
+				<!-- TABELA DE PESSOAS -->
+				<table class="table" id="tblPessoasID">
 				  <thead>
 				    <tr>
 				      <th scope="col">Nome</th>
 				      <th scope="col">Perfil</th>
+				      <th scope="col">Dt. Nascimento</th>
+				      <th scope="col">CPF</th>
+				      <th scope="col">Tel Residencial</th>
+				      <th scope="col">Tel Principal</th>
 				      <th scope="col">Celular</th>
 				      <th scope="col">E-mail</th>
+<!-- 				      Daí, vc vê qual o melhor nome pro campo -->
+				      <th scope="col">Cadastrado por</th>
+				      <th scope="col">Ativo</th>
 				      <th scope="col">Alterar</th>
-				      <th scope="col">Ativa</th>
-				      <th scope="col">Detalhes</th>
 				    </tr>
 				  </thead>
 				  <tbody>
-				    <tr>
-				      <th scope="row">1</th>
-				      <td>Mark</td>
-				      <td>Otto</td>
-				      <td>@mdo</td>
-				      <td>
-                   		<a href="#">
-                  			<span data-feather="edit"></span>
-                   		</a>
-                       </td>
-                       <td class="edit-loteria">
-                  		<a href="#">
-                   			<span data-feather="check-square"></span>
-                  		</a>
-                       </td>
-                       <td class="edit-loteria">
-                  		<a class="detalhes-pessoa" href="#">
-                  			<span data-feather="search"></span>
-                  		</a>
-                       </td>
-				    </tr>
-				    <tr>
-				      <th scope="row">2</th>
-				      <td>Jacob</td>
-				      <td>Thornton</td>
-				      <td>@fat</td>
-				      <td>
-                   		<a href="#">
-                   			<span data-feather="edit"></span>
-                   		</a>
-                       </td>
-                       <td class="edit-loteria">
-                  		<a href="#">
-                  			<span data-feather="check-square"></span>
-                  		</a>
-                       </td>
-                       <td class="edit-loteria">
-                  		<a href="#">
-                  			<span data-feather="search"></span>
-                  		</a>
-                       </td>
-				    </tr>
-				    <tr>
-				      <th scope="row">3</th>
-				      <td>Larry</td>
-				      <td>the Bird</td>
-				      <td>@twitter</td>
-				      <td>
-                   		<a href="#">
-                   			<span data-feather="edit"></span>
-                   		</a>
-                       </td>
-                       <td class="edit-loteria">
-                  		<a href="#">
-                  			<span data-feather="check-square"></span>
-                  		</a>
-                       </td>
-                       <td class="edit-loteria">
-                  		<a href="#">
-                  			<span data-feather="search"></span>
-                  		</a>
-                       </td>
-				    </tr>
 				  </tbody>
 				</table>
+				
+				<!-- MODAL CADASTRO DE PESSOA -->
+				<div id="modalCadastroID" class="cp-modal">
+					<div class="cp-modal-content">
+						<div class="cp-modal-title">
+							<span>Cadastro de Pessoa</span><span class="cp-modal-close">x</span>
+						</div>
+						<div id="msgCadPessoa"></div>
+						<div class="cp-modal-body">
+			    			 <div class="form-group">
+							     <label for="usernameID">Nome</label>
+							  	 <input type="text" class="form-control form-control-sm" id="nomeID" maxlength="100">
+							 </div>
+							 <div class="form-group">
+							    <label for="senhaID">Perfil</label>
+							    <input type="text" class="form-control form-control-sm" id="perfilID" maxlength="8">
+							 </div>
+							 <div class="form-group">
+							     <label for="usernameID">Dt. Nascimento</label>
+							  	 <input type="text" class="form-control form-control-sm" id="dtNascimID" maxlength="100">
+							 </div>
+							 <div class="form-group">
+							    <label for="senhaID">CPF</label>
+							    <input type="text" class="form-control form-control-sm" id="cpfID" maxlength="8">
+							 </div>
+							 <div class="form-group">
+							     <label for="usernameID">Tel Resid</label>
+							  	 <input type="text" class="form-control form-control-sm" id="telResidID" maxlength="100">
+							 </div>
+							 <div class="form-group">
+							    <label for="senhaID">Tel Prin</label>
+							    <input type="text" class="form-control form-control-sm" id="telPrinID" maxlength="8">
+							 </div>
+							 <div class="form-group">
+							     <label for="usernameID">Celular</label>
+							  	 <input type="text" class="form-control form-control-sm" id="celularID" maxlength="100">
+							 </div>
+							 <div class="form-group">
+							    <label for="senhaID">E-mail</label>
+							    <input type="text" class="form-control form-control-sm" id="emailID" maxlength="8">
+							 </div>
+							 <div class="form-group">
+							    <label for="senhaID">Cadastrado por</label>
+							    <input type="text" class="form-control form-control-sm" id="usrCadastrouID" maxlength="8">
+							    </div>
+							 <div class="form-group">
+							    <label for="senhaID">Ativo</label>
+							    <input type="text" class="form-control form-control-sm" id="ativoID" maxlength="8">
+							 </div>
+			    			 <button id="cadastraPessoaID" type="submit" class="btn btn-primary btn-sm">Cadastrar</button>
+					  		 <button id="cancelaPessoaID" type="button" class="btn btn-secondary btn-sm">Cancelar</button>
+						</div>
+				   </div>
+				</div>
 			</div>
 		</div>
 	</body>

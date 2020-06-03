@@ -1,43 +1,46 @@
 package br.com.massenan.gestaodecontratos.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import br.com.massenan.gestaodecontratos.domain.Endereco;
 import br.com.massenan.gestaodecontratos.domain.Pessoa;
+import br.com.massenan.gestaodecontratos.domain.Usuario;
 
 public class PessoaDto {
 
 	private Long id;
 	private String nome;
 	private String perfil;
-	private String idade;
+	private String dtNascimento;
 	private String cpf;
 	private String telResidencial;
 	private String telPrincipal;
 	private String celular;
 	private String email;
-	private Endereco endereco;
+	private Usuario usuario;
 	private boolean ativo;
 
-	public static List<PessoaDto> parse(List<Pessoa> pessoas){
-		return null;
+	public static List<PessoaDto> parse(List<Pessoa> pessoas) {
+		List<PessoaDto> lista = new ArrayList<PessoaDto>();
+		pessoas.forEach(p -> lista.add(parse(p)));
+		return lista;
 	}
-	
+
 	public static Pessoa parse(PessoaDto pessoaDto) {
 		Pessoa pes = new Pessoa();
 		pes.setId(pessoaDto.getId());
 		pes.setNome(pessoaDto.getNome());
-		pes.setIdade(pessoaDto.getIdade());
+		pes.setDtNascimento(pessoaDto.getDtNascimento());
 		pes.setCpf(pessoaDto.getCpf());
 		pes.setTelResidencial(pessoaDto.getTelResidencial());
 		pes.setTelPrincipal(pessoaDto.getTelPrincipal());
 		pes.setCelular(pessoaDto.getCelular());
 		pes.setEmail(pessoaDto.getEmail());
 		pes.setAtivo(pessoaDto.isAtivo());
-		
-		Endereco ende = new Endereco();
-		ende.setId(pessoaDto.getId());
-		pes.setEndereco(ende);
+
+		Usuario usr = new Usuario();
+		usr.setId(pessoaDto.getId());
+		pes.setUsuario(usr);
 		return pes;
 	}
 
@@ -45,19 +48,17 @@ public class PessoaDto {
 		PessoaDto dto = new PessoaDto();
 		dto.setId(pessoa.getId());
 		dto.setNome(pessoa.getNome());
-		dto.setIdade(pessoa.getIdade());
+		dto.setDtNascimento(pessoa.getDtNascimento());
 		dto.setCpf(pessoa.getCpf());
 		dto.setTelResidencial(pessoa.getTelResidencial());
 		dto.setTelPrincipal(pessoa.getTelPrincipal());
 		dto.setCelular(pessoa.getCelular());
 		dto.setEmail(pessoa.getEmail());
-		dto.setEndereco(pessoa.getEndereco());
 		dto.setAtivo(pessoa.isAtivo());
-		
-		
-		Endereco ende = new Endereco();
-		ende.setId(pessoa.getId());
-		dto.setEndereco(ende);
+
+		Usuario usr = new Usuario();
+		usr.setId(pessoa.getId());
+		dto.setUsuario(usr);
 		return dto;
 	}
 
@@ -85,12 +86,12 @@ public class PessoaDto {
 		this.perfil = perfil;
 	}
 
-	public String getIdade() {
-		return idade;
+	public String getDtNascimento() {
+		return dtNascimento;
 	}
 
-	public void setIdade(String idade) {
-		this.idade = idade;
+	public void setDtNascimento(String dtNascimento) {
+		this.dtNascimento = dtNascimento;
 	}
 
 	public String getCpf() {
@@ -133,12 +134,12 @@ public class PessoaDto {
 		this.email = email;
 	}
 
-	public Endereco getEndereco() {
-		return endereco;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public boolean isAtivo() {
@@ -149,5 +150,4 @@ public class PessoaDto {
 		this.ativo = ativo;
 	}
 
-	
 }

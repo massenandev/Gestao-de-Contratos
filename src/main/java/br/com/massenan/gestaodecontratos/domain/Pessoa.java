@@ -26,9 +26,9 @@ public class Pessoa {
 
 	@Column(name = "NOME", nullable = false)
 	private String nome;
-	
-	@Column(name = "IDADE", nullable = false)
-	private String idade;
+
+	@Column(name = "DATA_NASCIMENTO", nullable = false)
+	private String dtNascimento;
 
 	@Column(name = "CPF", nullable = false)
 	private String cpf;
@@ -45,24 +45,19 @@ public class Pessoa {
 	@Column(name = "E_MAIL", nullable = true)
 	private String email;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "CD_ENDERECO", nullable = false)
-	private Endereco endereco;
-	
 	@Column(name = "DATA_CADASTRO", nullable = false)
 	private LocalDateTime dtCadastro;
 
 	@Column(name = "DATA_ULTIMA_ALTERACAO", nullable = false)
 	private LocalDateTime dtUltAlt;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "CD_USUARIO", nullable = false)
 	private Usuario usuario;
-	
+
 	@Column(name = "ATIVO")
 	private boolean ativo;
 
-	//GETTERS AND SETTERS
 	public Long getId() {
 		return id;
 	}
@@ -79,12 +74,12 @@ public class Pessoa {
 		this.nome = nome;
 	}
 
-	public String getIdade() {
-		return idade;
+	public String getDtNascimento() {
+		return dtNascimento;
 	}
 
-	public void setIdade(String idade) {
-		this.idade = idade;
+	public void setDtNascimento(String dtNascimento) {
+		this.dtNascimento = dtNascimento;
 	}
 
 	public String getCpf() {
@@ -127,14 +122,6 @@ public class Pessoa {
 		this.email = email;
 	}
 
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-
 	public LocalDateTime getDtCadastro() {
 		return dtCadastro;
 	}
@@ -149,6 +136,14 @@ public class Pessoa {
 
 	public void setDtUltAlt(LocalDateTime dtUltAlt) {
 		this.dtUltAlt = dtUltAlt;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public boolean isAtivo() {
@@ -186,11 +181,9 @@ public class Pessoa {
 
 	@Override
 	public String toString() {
-		return "Pessoa [id=" + id + ", nome=" + nome + ", idade=" + idade + ", cpf=" + cpf + ", telResidencial="
-				+ telResidencial + ", telPrincipal=" + telPrincipal + ", celular=" + celular + ", email=" + email
-				+ ", endereco=" + endereco + ", dtCadastro=" + dtCadastro + ", dtUltAlt=" + dtUltAlt + ", ativo="
-				+ ativo + "]";
+		return "Pessoa [id=" + id + ", nome=" + nome + ", dtNascimento=" + dtNascimento + ", cpf=" + cpf
+				+ ", telResidencial=" + telResidencial + ", telPrincipal=" + telPrincipal + ", celular=" + celular
+				+ ", email=" + email + ", dtCadastro=" + dtCadastro + ", dtUltAlt=" + dtUltAlt + ", usuario=" + usuario
+				+ ", ativo=" + ativo + "]";
 	}
-
-	
 }

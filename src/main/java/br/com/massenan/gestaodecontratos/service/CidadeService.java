@@ -23,10 +23,6 @@ public class CidadeService {
 		return repository.findAll();
 	}
 	
-	/**
-	 * 
-	 * @param user
-	 */
 	public void create(Cidade cidade) {
 		repository.save(cidade);
 	}

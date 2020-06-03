@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import br.com.massenan.gestaodecontratos.domain.Cidade;
 import br.com.massenan.gestaodecontratos.domain.Endereco;
+import br.com.massenan.gestaodecontratos.domain.Pessoa;
 import br.com.massenan.gestaodecontratos.repository.EnderecoRepository;
 
 @Component
@@ -30,6 +31,10 @@ public class EnderecosFantasia {
 		Cidade cid1 = new Cidade();
 		cid1.setId(1l);
 		end1.setCidade(cid1);
+		
+		Pessoa p1 = new Pessoa();
+		p1.setId(1l);
+		end1.setPessoa(p1);
 		
 		Endereco end2 = new Endereco();
 		end2.setAtivo(true);
