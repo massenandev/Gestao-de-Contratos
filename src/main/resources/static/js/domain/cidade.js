@@ -14,7 +14,6 @@ function listarCidades(){
 		statusCode: {
 			200: function(data){
 				buildTable(data);
-				messagePanelSuccess('Cidade cadastrada com sucesso.');
 			},
 			500: function(ex){
 				messagePanelError('Ocorreu um erro no cadastro. Tente mais tarde.');
@@ -35,8 +34,11 @@ function cadastrar(){
 }
 
 
-function alterarCidade(id){
-	console.log(id);
+function alterarCidade(line){
+	var values = getLineTable(line);
+	$('#cidadeID').val(values[1]);
+	$('#ufID').val(values[2]);
+	cpOpenModal('#modalCadCidadeID');
 }
 
 
@@ -55,8 +57,10 @@ function cadastrarCidadeAjax(cidade){
 		statusCode: {
 			200: function(cidades){
 				buildTable(cidades);
+				messagePanelSuccess('Cidade cadastrada com sucesso.');
 			},
 			500: function(ex){
+				messagePanelError('Ocorreu um erro no cadastro. Tente mais tarde.');
 				console.error('Ocorreu um erro. ' + ex);
 			}
 		}
@@ -73,6 +77,10 @@ function initModalCadastro(){
 	cpModal(modal);
 }
 
+/**
+ * Valida o cadastro da cidade
+ * @returns
+ */
 function validar(){
 	var cidade = $('#cidadeID').val();
 	var uf     = $('#ufID').val();
@@ -86,17 +94,25 @@ function validar(){
 	}
 }
 
+/**
+ * Monta a tabela de cidades
+ * @param cidades
+ * @returns
+ */
 function buildTable(cidades){
-	$('#tbCidadesID tbody > tr').remove();
+	$('#tblCidadesID tbody > tr').remove();
 	
 	cidades.forEach(function(cid){
 		var $tr = $('<tr>').append(
 			$('<td style="display:none;">').text(cid.id),
 			$('<td>').text(cid.nome),
 			$('<td>').text(cid.uf),
-			$('<td onclick="alterarCidade('+cid.id+')">').html($('<a href="#"></a>').prepend(getIcon(2)))
+			$('<td onclick="alterarCidade(this)">').html($('<a href="#"></a>').prepend(getIcon(2)))
 		);
 		
 	    $('#tblCidadesID').append($tr);
 	})
 }
+
+
+//alterarCidade('+cid.id+')
