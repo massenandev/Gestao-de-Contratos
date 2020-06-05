@@ -9,6 +9,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import br.com.massenan.gestaodecontratos.domain.PerfilEnum;
+import br.com.massenan.gestaodecontratos.domain.Usuario;
 import br.com.massenan.gestaodecontratos.dto.UsuarioDto;
 import br.com.massenan.gestaodecontratos.service.UsuarioService;
 
@@ -23,10 +25,22 @@ public class UsuarioController {
 	@GetMapping("/listar")
 	public ResponseEntity<?> findAll() {
 		try {
+			service.create(build());
 			return ResponseEntity.ok().body(UsuarioDto.parse(service.findAll()));
 		} catch (Exception ex) {
 			logger.error("[CARREGANDO-TODOS-OS-USUARIOS]", ex.fillInStackTrace());
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+	}
+	
+	private Usuario build() {
+		Usuario usu =  new Usuario();
+		usu.setAtivo(true);
+		usu.setPendente(true);
+		usu.setPerfil(PerfilEnum.ADMIN);
+		usu.setSenha("123456");
+		usu.setUsername("Letícia");
+		usu.setUsuario(null);
+		return null;
 	}
 }

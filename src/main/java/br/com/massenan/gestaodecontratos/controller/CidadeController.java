@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.com.massenan.gestaodecontratos.dto.CidadeDto;
+import br.com.massenan.gestaodecontratos.dto.UsuarioDto;
 import br.com.massenan.gestaodecontratos.service.CidadeService;
 
 @Controller
@@ -52,11 +53,11 @@ public class CidadeController {
 	}
 
 	@PutMapping(value = "/atualizar", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> update(CidadeDto cidadeDto) {
+	public ResponseEntity<?> update(@RequestBody CidadeDto cidadeDto) {
 
 		try {
 			cidadeService.update(CidadeDto.parse(cidadeDto));
-			return ResponseEntity.ok("Cidade atualizada com sucesso!");
+			return ResponseEntity.ok().body(CidadeDto.parse(cidadeService.findAll()));
 		} catch (Exception ex) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
