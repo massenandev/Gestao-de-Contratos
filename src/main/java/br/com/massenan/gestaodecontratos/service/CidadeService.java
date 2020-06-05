@@ -15,10 +15,7 @@ public class CidadeService {
 	@Autowired
 	private CidadeRepository repository;
 	
-	/**
-	 * 
-	 * @return
-	 */
+
 	public List<Cidade> findAll(){
 		return repository.findAll();
 	}

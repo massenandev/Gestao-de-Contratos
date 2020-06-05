@@ -35,7 +35,7 @@
 	 * @returns
 	 */
 	function formatShortDate(strDate){
-		return (new Date(strDate)).toLocaleString();
+		return (new Date(strDate)).toLocaleString("pt-BR");
 	}
 
 	/**

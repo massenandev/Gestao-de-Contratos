@@ -1,10 +1,29 @@
 <!DOCTYPE html>
 <html layout:decorate="~{layout}">
-	<head><meta charset="UTF-8" /></head>
+	<head>
+		<meta charset="UTF-8"/>
+		<link th:href="@{/css/components/cp-confirm-dialog.css}" rel="stylesheet"/>
+		<link th:href="@{/css/components/cp-modal.css}" rel="stylesheet"/>
+	</head>
 	<body>
 		<div layout:fragment="body">	
 			<div class="app-body">
 				<div class="container app-body">
+					<ul class="nav justify-content-end">
+					  <li class="nav-item">
+						<a class="nav-link" href="#" id="btnAbrirModalID">
+							<span class="feather-action-button" data-feather="plus-square"></span>
+							Cadastrar
+						</a>
+					  </li>
+					  <li class="nav-item">
+						<a class="nav-link" href="#">
+							<span data-feather="file"></span>
+							Relatório
+						</a>
+					  </li>
+					</ul>
+					<!-- TABELA DE USUÁRIOS -->
 					<table class="table app-table" id="tblUsuariosID">
 					  <thead>
 					    <tr>
@@ -21,8 +40,31 @@
 					  </tbody>
 					</table>
 				</div>
+				<!-- MODAL CADASTRO -->
+				<div id="modalCadUsuarioID" class="cp-modal">
+					<div class="cp-modal-content">
+						<div class="cp-modal-title">
+							<span>Cadastro de Usuário</span><span class="cp-modal-close">x</span>
+						</div>
+						<div class="cp-modal-body">
+							 <div id="msgCadUsuario"></div>
+							  <div class="form-group">
+							  	 <input type="hidden" id="hiddenID"/>
+							     <label for="usernameID">Username</label>
+							  	 <input type="text" class="form-control form-control-sm" id="usrnameID" maxlength="100">
+							 </div>
+							 <hr class="my-3">
+						 	 <div style="text-align:right;">
+				    			 <button id="cadastraUsuarioID" type="submit" class="btn btn-primary btn-sm">Cadastrar</button>
+						  		 <button id="cancelaUsuarioID" type="button" class="btn btn-secondary btn-sm">Cancelar</button>
+						 	 </div>
+						</div>
+				   </div>
+				</div>
 			</div>
 		</div>
 	</body>
 </html>
+<script th:src="@{/js/components/cp-confirm-dialog.js}"></script>
+<script th:src="@{/js/components/cp-modal.js}"></script>
 <script th:src="@{/js/domain/usuario.js}"></script>
