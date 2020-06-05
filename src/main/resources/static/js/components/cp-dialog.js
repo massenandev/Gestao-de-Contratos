@@ -2,15 +2,15 @@
 /**
  * Inicia um dialog.
  * Nao abre o dialog
- * {'modal':'','width':'','cancel':''}
+ * {'modal':'','width':'','close':''}
  * @param dialog
  * @returns
  */
-function cpConfirmDialogInit(dialog){	
-	$('.cp-confirm-dialog-content').css('width', dialog.width);
-	var span = '.cp-confirm-dialog-close';
+function cpDialogInit(dialog){	
+	$('.cp-dialog-content').css('width', dialog.width);
+	var span = '.cp-dialog-close';
 
-	$(dialog.cancel).click(function(){
+	$(dialog.close).click(function(){
 		$(dialog.modal).css('display','none');
 	});
 	
@@ -21,19 +21,19 @@ function cpConfirmDialogInit(dialog){
 
 /**
  * Inicia e abre um dialog
- * {'modal':'','width':'','open':'','cancel':''}
+ * {'modal':'','width':'','open':'','close':''}
  * @param dialogObject
  * @returns
  */
-function cpConfirmDialog(dialog){	
-	$('.cp-confirm-dialog-content').css('width', dialog.width);
-	var span = '.cp-confirm-dialog-close';
+function cpDialog(dialog){	
+	$('.cp-dialog-content').css('width', dialog.width);
+	var span = '.cp-dialog-close';
 
 	$(dialog.open).click(function(){
 		$(dialog.modal).css('display','block');
 	});
 	
-	$(dialog.cancel).click(function(){
+	$(dialog.close).click(function(){
 		$(dialog.modal).css('display','none');
 	});
 	
@@ -47,7 +47,7 @@ function cpConfirmDialog(dialog){
  * @param modalID
  * @returns
  */
-function cpConfirmCloseDialog(dialogID){
+function cpCloseDialog(dialogID){
 	$(dialogID).css('display','none');
 }
 
@@ -56,6 +56,6 @@ function cpConfirmCloseDialog(dialogID){
  * @param modalID
  * @returns
  */
-function cpConfirmOpenDialog(dialogID){
+function cpOpenDialog(dialogID){
 	$(dialogID).css('display','block');
 }

@@ -2,7 +2,32 @@
 	 * 	FUNCOES COMUNS DE JAVASCRIPT
 	 *--------------------------------------------------------------------------------------------------------------*/
 
+	/**
+	 * Obtem de uma tag <tr/> o 
+	 * conteudo de todas as colunas <td/>
+	 * @param line (this) de uma <tr/>
+	 * @returns
+	 */
+	function getLineTable(line){
+		var values = [];
+		
+		$(line).closest('tr').find('td').each(function() {
+		  	var column = $(this).text().trim();
+	        if(column !== ''){
+	        	values.push(column);
+	        }
+	   	});
+		return values;
+	}
 
+	/**
+	 * Formata moeda
+	 * @param valor
+	 * @returns - retorna o valor formato texto;
+	 */
+	function formatMoeda(valor){
+		return valor.toLocaleString("pt-BR", { style: "currency" , currency:"BRL"});
+	}
 
 	/**
 	 * Formata data

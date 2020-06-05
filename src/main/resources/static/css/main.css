@@ -1,51 +1,3 @@
-
-.jumbotron {
-    padding: 2rem 1rem;
-}
-
-.app-header {
-	color: #FFFFFF;
-}
-
-.header-panel {
-	margin-bottom: 0rem;
-}
-
-.app-title {
-	font-size: 4em;
-}
-
-.app-perfil a {
-	color: #FFFFFF;
-}
-
-.app-perfil a .feather {
-	width: 18px;
-	height: 18px;
-}
-
-
-/* menu app */
-.wrapper-menu {
-	background: white;
-}
-
-.app-menu {
-	background: white; 
-	box-shadow: 2px 2px 5px #D3D3D3;
-	padding: 1em;
-}
-
-.app-menu a {
-	color:#607B8B;
-}
-
-.app-menu a .feather {
-	width: 20px;
-	height: 20px;
-}
-
-
 /* body app  */
 .app-body {
 	padding-top: 1em;
@@ -57,44 +9,14 @@
 }
 
 
-/* app modules */
-.title-module a {
-	font-size: 1.3em;
-	color: #009ACD;
-}
-
-.title-module a .feather {
-	width: 30px;
-	height: 30px;
-	color: #009ACD;
-}
-
-.title-module label {
-	margin-left:0.6em;
-}
-
-.subtitle-module {
-	font-size:0.8em;
-	padding-left: 1em;
-	color: #009ACD;
-}
-
-.action-module {
-	margin-bottom: 0.7em;
-}
-
-.action-module a {
-	color: #009ACD;
-}
-
-.action-module a .feather {
-	width: 20px;
-	height: 20px;
+/* limpa divs */
+.clear {
+	clear: both;
 }
 
 
 
-/* for table */
+/* tabelas */
 .align-tb-center {
   text-align: center;
 }
@@ -138,79 +60,3 @@
     font-family: Arial;
     font-size: 0.9em;
 }
-
-
-/* for modal */
-.cp-modal {
-  display: none; 
-  position: fixed; 
-  z-index: 1; 
-  padding-top:200px; 
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; 
-  background-color: rgb(0,0,0); 
-  background-color: rgba(0,0,0,0.4);
-}
-
-.cp-modal-title {
-	background: #607B8B;
-	padding: 8px 5px 10px 15px;
-	color: #fefefe;
-}
-
-.cp-modal-content {
-  background-color: #fefefe;
-  margin: auto;
-  border: 1px solid #888;
-}
-
-.cp-modal-body {
-  margin: auto;
-  padding: 15px 15px 30px 15px;
-}
-
-.cp-modal-close {
-	color: #aaaaaa;
-	font-weight: bold;
-	float: right;
-	padding-right: 10px;
-}
-
-.cp-modal-close:hover,
-.cp-modal-close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.clear {
-	clear: both;
-}
-
-
-.grid-row {
-	padding: 2px;
-}
-
-
-
-img {
-    vertical-align: middle;
-    border-style: none;
-     width: 15px;
-  height: 15px;
-}
-
-
-
-
-
-
-
-
-
-
-
