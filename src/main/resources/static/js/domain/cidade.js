@@ -14,9 +14,10 @@ function listarCidades(){
 		statusCode: {
 			200: function(data){
 				buildTable(data);
+				messagePanelSuccess('Cidade cadastrada com sucesso.');
 			},
 			500: function(ex){
-				showMessageError('#msgCadCidade', 'Ocorreu um erro no cadastro.');
+				messagePanelError('Ocorreu um erro no cadastro. Tente mais tarde.');
 				console.error('Ocorreu um erro. ' + ex);
 			},
 		}
@@ -28,14 +29,21 @@ function cadastrar(){
 		if( validar() != null ){
 			var cidade = validar();
 			cadastrarCidadeAjax(cidade);
+			cpCloseModal('#modalCadCidadeID');
 		}
 	});
 }
 
 
-//-------------------------------------------------------------------------------------------------------------------------------
-//	PRIVATE FUNCTIONS
-//-------------------------------------------------------------------------------------------------------------------------------
+function alterarCidade(id){
+	console.log(id);
+}
+
+
+
+//-----------------------------------------------------------------------------------------------------------------------------------------
+//	 PRIVATE METHODS HELERS
+//-----------------------------------------------------------------------------------------------------------------------------------------
 function cadastrarCidadeAjax(cidade){
 	$.ajax({
 		type: 'POST',
@@ -55,10 +63,14 @@ function cadastrarCidadeAjax(cidade){
 	});
 }
 
+/**
+ * Prepara/executa a modal de cadastro
+ * @returns
+ */
 function initModalCadastro(){
-	var modalObject = {'modal':'#modalCadastroID','width':'16%', 'open':'#btnAbrirModalID', 'close':'.cp-modal-close', 'cancel':'#cancelaCidadeID'};
-	var fields      = ['#cidadeID','#ufID'];
-	cpModal(modalObject, fields);
+	var fields = ['#cidadeID','#ufID'];
+	var modal  = {'modal':'#modalCadCidadeID','width':'16%','open':'#btnAbrirModalID', 'cancel':'#cancelaCidadeID','fields':fields};
+	cpModal(modal);
 }
 
 function validar(){
@@ -78,12 +90,13 @@ function buildTable(cidades){
 	$('#tbCidadesID tbody > tr').remove();
 	
 	cidades.forEach(function(cid){
-			var $tr = $('<tr>').append(
-				$('<td style="display:none;">').text(cid.id),
-				$('<td>').text(cid.nome),
-				$('<td>').text(cid.uf),
-			);
+		var $tr = $('<tr>').append(
+			$('<td style="display:none;">').text(cid.id),
+			$('<td>').text(cid.nome),
+			$('<td>').text(cid.uf),
+			$('<td onclick="alterarCidade('+cid.id+')">').html($('<a href="#"></a>').prepend(getIcon(2)))
+		);
 		
-			$('#tblCidadesID').append($tr);
+	    $('#tblCidadesID').append($tr);
 	})
 }

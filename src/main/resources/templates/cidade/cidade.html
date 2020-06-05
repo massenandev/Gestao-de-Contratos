@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html layout:decorate="~{layout}">
-	<head><meta charset="UTF-8" /></head>
+	<head>
+		<meta charset="UTF-8"/>
+		<link th:href="@{/css/components/cp-confirm-dialog.css}" rel="stylesheet"/>
+		<link th:href="@{/css/components/cp-modal.css}" rel="stylesheet"/>
+	</head>
 	<body>
 		<div layout:fragment="body">	
 			<div class="container app-body">
-				<div>
-					<div id="messageID"></div>
+				<div class="container app-body">
 					<ul class="nav justify-content-end">
 					  <li class="nav-item">
 						<a class="nav-link" href="#" id="btnAbrirModalID">
@@ -20,29 +23,29 @@
 						</a>
 					  </li>
 					</ul>
+					<!-- TABELA DE CIDADES -->
+					<table class="table app-table" id="tblCidadesID">
+					  <thead>
+					    <tr>
+					      <th scope="col">Nome</th>
+					      <th scope="col">UF</th>
+					      <th scope="col">Alterar</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					  </tbody>
+					</table>
 				</div>
-				<!-- TABELA DE CIDADES -->
-				<table class="table" id="tblCidadesID">
-				  <thead>
-				    <tr>
-				      <th scope="col">Nome</th>
-				      <th scope="col">UF</th>
-				      <th scope="col">Alterar</th>
-				    </tr>
-				  </thead>
-				  <tbody>
-				  </tbody>
-				</table>
-								
-				<!-- MODAL CADASTRO DE CIDADE -->
-				<div id="modalCadastroID" class="cp-modal">
+					
+				<!-- MODAL CADASTRO -->
+				<div id="modalCadCidadeID" class="cp-modal">
 					<div class="cp-modal-content">
 						<div class="cp-modal-title">
-							<span>Cadastro de Cidade</span><span class="cp-modal-close">x</span>
+							<span>Cadastro de Usuário</span><span class="cp-modal-close">x</span>
 						</div>
-						<div id="msgCadCidade"></div>
 						<div class="cp-modal-body">
-			    			 <div class="form-group">
+							 <div id="msgCadCidade"></div>
+							  <div class="form-group">
 							     <label for="usernameID">Cidade</label>
 							  	 <input type="text" class="form-control form-control-sm" id="cidadeID" maxlength="100">
 							 </div>
@@ -50,14 +53,18 @@
 							    <label for="senhaID">UF</label>
 							    <input type="text" class="form-control form-control-sm" id="ufID" maxlength="8">
 							 </div>
-			    			 <button id="cadastraCidadeID" type="submit" class="btn btn-primary btn-sm">Cadastrar</button>
-					  		 <button id="cancelaCidadeID" type="button" class="btn btn-secondary btn-sm">Cancelar</button>
+							 <hr class="my-3">
+						 	 <div style="text-align:right;">
+				    			 <button id="cadastraCidadeID" type="submit" class="btn btn-primary btn-sm">Cadastrar</button>
+						  		 <button id="cancelaCidadeID" type="button" class="btn btn-secondary btn-sm">Cancelar</button>
+						 	 </div>
 						</div>
 				   </div>
 				</div>
-				
 			</div>
 		</div>
 	</body>
 </html>
+<script th:src="@{/js/components/cp-confirm-dialog.js}"></script>
+<script th:src="@{/js/components/cp-modal.js}"></script>
 <script th:src="@{/js/domain/cidade.js}"></script>
