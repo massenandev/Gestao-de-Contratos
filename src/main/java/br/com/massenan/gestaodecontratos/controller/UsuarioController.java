@@ -1,5 +1,8 @@
 package br.com.massenan.gestaodecontratos.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import br.com.massenan.gestaodecontratos.domain.PerfilEnum;
 import br.com.massenan.gestaodecontratos.domain.Usuario;
 import br.com.massenan.gestaodecontratos.dto.UsuarioDto;
 import br.com.massenan.gestaodecontratos.service.UsuarioService;
@@ -30,6 +34,16 @@ public class UsuarioController {
 	public ResponseEntity<?> findAll() {
 		try {
 			return ResponseEntity.ok().body(UsuarioDto.parse(service.findAll()));
+		} catch (Exception ex) {
+			logger.error("[CARREGANDO-TODOS-OS-USUARIOS]", ex.fillInStackTrace());
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	@GetMapping("/listarperfil")
+	public ResponseEntity<?> listarPerfil() {
+		try {
+			return ResponseEntity.ok().body(getPerfis());
 		} catch (Exception ex) {
 			logger.error("[CARREGANDO-TODOS-OS-USUARIOS]", ex.fillInStackTrace());
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -63,5 +77,38 @@ public class UsuarioController {
 		} catch (Exception ex) {
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
+	}
+
+	
+	@PutMapping(value="/status/{status}/id/{id}")
+	public ResponseEntity<?> setStatus(@PathVariable boolean status, @PathVariable Long id){
+		
+		try {
+			service.updateStatus(id, status);
+			return ResponseEntity.ok().body(UsuarioDto.parse(service.findAll()));
+		} catch (Exception ex) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	@PutMapping(value="/atualizarperfil/{perfil}/id/{id}")
+	public ResponseEntity<?> setStatus(@PathVariable String perfil, @PathVariable Long id){
+		
+		try {
+			PerfilEnum oPerfil = PerfilEnum.fromText(perfil);
+			service.updatePerfil(id, oPerfil);
+			return ResponseEntity.ok().body(UsuarioDto.parse(service.findAll()));
+		} catch (Exception ex) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+	
+	public List<String> getPerfis(){
+		List<String>list = new ArrayList<String>();
+		
+		for(PerfilEnum p : PerfilEnum.values()) {
+			list.add(p.getTipo());
+		}
+		return list;
 	}
 }

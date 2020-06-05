@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.massenan.gestaodecontratos.domain.PerfilEnum;
 import br.com.massenan.gestaodecontratos.domain.Usuario;
 import br.com.massenan.gestaodecontratos.repository.UsuarioRepository;
 
@@ -39,4 +40,14 @@ public class UsuarioService {
 	public void update(Usuario usuario) {
 		repository.saveAndFlush(usuario);
 	}
+
+	public void updateStatus(Long id, boolean status) {
+		repository.updateStatus(status, id);
+	}
+
+	public void updatePerfil(Long id, PerfilEnum perfil) {
+		repository.updatePerfil(perfil, id);
+	}
+	
+	
 }

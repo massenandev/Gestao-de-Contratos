@@ -1,9 +1,16 @@
+//INITIALIZE
 $(document).ready(function(){
 	listaUsuarios();
 	initModalCadastro();
+	initDialogStatus();
 	cadastrar();
+	alterarStatus();
+	listaPerfis();
 });
 
+// [ PUBLIC FUNCTION ] -------------------------------------------------------------------------------//
+
+var PARAMS = null;
 
 function listaUsuarios(){
 	$.ajax({
@@ -18,6 +25,25 @@ function listaUsuarios(){
 			},
 			500: function(ex){
 				console.error('Ocorreu um erro.' + ex);
+			}
+		}
+	});
+}
+
+function listaPerfis(){
+	$.ajax({
+		type:'GET',
+		url: 'http://localhost:8080/api/usuarios/listarperfil',
+		cache: false,
+		timeOut: 600000,
+		contentType: 'json',
+		statusCode: {
+			200: function(perfils){
+				montaListaPerfil(perfils);
+			},
+			500: function(ex){
+				messagePanelError('Ocorreu um erro no sistema, tente mais tarde.');
+				console.error('Ocorreu um erro.' + ex.status);
 			}
 		}
 	});
@@ -52,6 +78,69 @@ function alterarUsuario(line){
 	configBotaoLabel(values[0]);
 	cpOpenModal('#modalCadUsuarioID');
 }
+
+function alterarStatus(){
+	$('#confirmarAtivoID').click(function(){
+		var status = PARAMS[1] ? false : true;
+		atualizarStatus(PARAMS[0], status);
+		cpConfirmCloseDialog('#dialogStatusID');
+	});
+}
+
+function exibirDialogStatus(obj, ativo){
+	var valores = getLineTable(obj);
+	var msg     = ativo ? 'Deseja desativar o usuario?' : 'Deseja ativar o usuario?';  
+	PARAMS      = [];
+	
+	PARAMS.push(Number(valores[0]));
+	PARAMS.push(ativo);
+	$('#questionID').text(msg);
+	cpConfirmOpenDialog('#dialogStatusID');
+}
+
+
+// [ PRIVATE FUNCTIONS ] -------------------------------------------------------------------------------------------/
+function atualizarStatus(id, status){
+	$.ajax({
+		type:'PUT',
+		url: 'http://localhost:8080/api/usuarios/status/'+status+'/id/'+id,
+		cache: false,
+		timeOut: 600000,
+		contentType: "text/html; charset=utf-8",
+		statusCode: {
+			200: function(usuarios){
+				buildTable(usuarios);
+				var msg = status ? 'Usuario ativado com sucesso.' : 'Usuario desativado com sucesso';
+				messagePanelSuccess(msg);
+			},
+			500: function(ex){
+				messagePanelError('Ocorreu um erro no sistema, tente mais tarde.');
+				console.error('Ocorreu um erro no sistema.' + ex.status);
+			}
+		}
+	});
+}
+
+function atualizarPerfil(id, perfil){
+	$.ajax({
+		type:'PUT',
+		url: 'http://localhost:8080/api/usuarios/atualizarperfil/'+perfil+'/id/'+id,
+		cache: false,
+		timeOut: 600000,
+		contentType: "text/html; charset=utf-8",
+		statusCode: {
+			200: function(usuarios){
+				buildTable(usuarios);
+				messagePanelSuccess('Perfil do usuario atualizado com sucesso.');
+			},
+			500: function(ex){
+				messagePanelError('Ocorreu um erro no sistema, tente mais tarde.');
+				console.error('Ocorreu um erro no sistema.' + ex.status);
+			}
+		}
+	});
+}
+
 
 function cadastrarUsuarioAjax(usuario){
 	$.ajax({
@@ -101,6 +190,12 @@ function initModalCadastro(){
 	cpModal(modal);
 }
 
+function initDialogStatus(){
+	var obj = {'modal':'#dialogStatusID','width':'14%','cancel':'#closeAtivoID'};
+	cpConfirmDialogInit(obj);
+}
+
+
 /**
  * Valida o cadastro da cidade
  * @returns
@@ -133,7 +228,7 @@ function buildTable(usuarios){
            	   $('<td>').html(getBooleanIcon(usr.pendente)),
            	   $('<td>').text(formatShortDate(usr.dtCadastro)),
            	   $('<td>').text(formatShortDate(usr.dtUltAlt)),
-           	   $('<td>').html(getBooleanIcon(usr.ativo)),
+           	   $('<td onclick="exibirDialogStatus(this, '+usr.ativo+')">').html($('<a href="#"></a>').append(getBooleanIcon(usr.ativo))),
            	   $('<td onclick="alterarUsuario(this)">').html($('<a href="#"></a>').prepend(getIcon(2)))
 	        );
 		 	
@@ -147,4 +242,12 @@ function configBotaoLabel(id){
 	}else {
 		$('#cadastraUsuarioID').text('Cadastrar');
 	}
+}
+
+function montaListaPerfil(perfis){
+	var cont = 1;
+	perfis.forEach(function(p){
+		console.log(p);
+		$('#perfilID').append( new Option(p, cont++) );
+	});
 }

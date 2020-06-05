@@ -6,9 +6,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MenuController {
 
-	@GetMapping("/home/menu")
-	public String home() {
-		return "home";
+	@GetMapping("/")
+	public String login() {
+		return "login";
+	}
+
+	@GetMapping("/dashboard/menu")
+	public String dashboard() {
+		return "dashboard";
 	}
 	
 	@GetMapping("/pessoa/menu")
