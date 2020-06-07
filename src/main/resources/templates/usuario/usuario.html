@@ -40,19 +40,23 @@
 					  </tbody>
 					</table>
 				</div>
-				<!-- MODAL CADASTRO -->
+				<!-- MODAL CADASTRO USUARIO -->
 				<div id="modalCadUsuarioID" class="cp-modal">
 					<div class="cp-modal-content">
 						<div class="cp-modal-title">
-							<span>Atualizar Usuário</span><span class="cp-modal-close">x</span>
+							<span>Cadastrar Usuário</span><span class="cp-modal-close">x</span>
 						</div>
 						<div class="cp-modal-body">
 							 <div id="msgCadUsuario"></div>
 							  <div class="form-group">
-							  	  <label for="perfilID">Perfil</label>
-							      <select id="perfilID" class="form-control form-control-sm">
+							  	  <label for="perfilCadID">Perfil</label>
+							      <select id="perfilCadID" class="form-control form-control-sm">
 							        <option value="0">Selecione</option>
 							      </select>
+							 </div>
+							  <div class="form-group">
+							  	  <label for="usrnameCadID">Username</label>
+							  	  <input type="text" class="form-control form-control-sm" id="usrnameCadID" maxlength="20" />
 							 </div>
 							 <hr class="my-3">
 						 	 <div style="text-align:right;">
@@ -63,7 +67,30 @@
 				   </div>
 				</div>
 				
-				<!-- DIALOG ATERAR STATUS DO USUARIO -->
+				<!-- MODAL ATUALIZA USUARIO -->
+				<div id="modalAtualizaUsuarioID" class="cp-modal">
+					<div class="cp-modal-content">
+						<div class="cp-modal-title">
+							<span>Atualizar Usuário</span><span class="cp-modal-close">x</span>
+						</div>
+						<div class="cp-modal-body">
+							 <div id="msgAtualizaUsuario"></div>
+							  <div class="form-group">
+							  	  <label for="perfilAtlzrID">Perfil</label>
+							      <select id="perfilAtlzrID" class="form-control form-control-sm">
+							        <option value="0">Selecione</option>
+							      </select>
+							 </div>
+							 <hr class="my-3">
+						 	 <div style="text-align:right;">
+				    			 <button id="atualizaUsuarioID" type="submit" class="btn btn-primary btn-sm">Atualizar</button>
+						  		 <button id="cancelaAtualizaUsuarioID" type="button" class="btn btn-secondary btn-sm">Cancelar</button>
+						 	 </div>
+						</div>
+				   </div>
+				</div>
+				
+				<!-- DIALOG ALTERAR STATUS DO USUARIO -->
 				<div id="dialogStatusID" class="cp-confirm-dialog">
 					<div class="cp-confirm-dialog-content">
 						<div class="cp-confirm-dialog-title">

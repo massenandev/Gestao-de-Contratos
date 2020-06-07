@@ -92,7 +92,7 @@ public class UsuarioController {
 	}
 
 	@PutMapping(value="/atualizarperfil/{perfil}/id/{id}")
-	public ResponseEntity<?> setStatus(@PathVariable String perfil, @PathVariable Long id){
+	public ResponseEntity<?> setPerfil(@PathVariable String perfil, @PathVariable Long id){
 		
 		try {
 			PerfilEnum oPerfil = PerfilEnum.fromText(perfil);

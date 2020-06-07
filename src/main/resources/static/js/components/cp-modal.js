@@ -8,8 +8,9 @@
  */
 function cpModalInit(modal){	
 	$('.cp-modal-content').css('width', modal.width);
-	var span = '.cp-modal-close';
-
+	var span   = '.cp-modal-close';
+	var fields = modal.fields;
+	
 	$(modal.cancel).click(function(){
 		cpClearFieldsModal(modal.fields);
 		$(modal.modal).css('display','none');
@@ -70,6 +71,7 @@ function cpOpenModal(modalID){
  * @returns
  */
 function cpClearFieldsModal(fields){
+	if(fields == null) return;
 	fields.forEach(function(field){
 		$(field).val('');
 	});

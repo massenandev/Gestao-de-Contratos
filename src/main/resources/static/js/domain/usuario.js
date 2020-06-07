@@ -6,6 +6,8 @@ $(document).ready(function(){
 	cadastrar();
 	alterarStatus();
 	listaPerfis();
+	initModalAtualizar();
+	confirmarAtualizacao();
 });
 
 // [ PUBLIC FUNCTION ] -------------------------------------------------------------------------------//
@@ -49,34 +51,59 @@ function listaPerfis(){
 	});
 }
 
-function cadastrar(){
-	$('#cadastraUsuarioID').click(function(){
-		if( validar(null) != null ){
-			var id = $('#hiddenID').val();
-			
-			if(id == ''){//cadastrar
-				var usuario = validar(null);
-				cadastrarUsuarioAjax(usuario);
-				cpCloseModal('#modalCadUsuarioID');
-				configBotaoLabel(null);
-				
-			}else {//atualizar
-				var usuario = validar(id);
-				atualizarUsuarioAjax(usuario);
-				cpCloseModal('#modalCadUsuarioID');
-				configBotaoLabel(null);
-			}
-			
+function confirmarAtualizacao(){
+	$('#atualizaUsuarioID').click(function(){
+		var selected = $('#perfilAtlzrID option:selected').text();
+		if(validaPerfil(selected)){
+			alterarUsuario();
 		}
 	});
 }
 
-function alterarUsuario(line){
+function alterarUsuario(){
+	var perfil = $('#perfilAtlzrID option:selected').text();
+	var id 	   = PARAMS;
+	atualizarPerfilUsuarioAjax(perfil, id);
+	cpCloseModal('#modalAtualizaUsuarioID');
+}
+
+function validaPerfil(selected){
+	if(selected == 'Selecione'){
+		showMessageWarning('#msgAtualizaUsuario', 'Informe o perfil.');
+		return false;
+	} else {
+		return true;
+	}
+}
+
+function cadastrar(){
+	$('#cadastraUsuarioID').click(function(){
+		if(validarCadastro()){
+			var perfil   = $('#perfilCadID option:selected').text();
+			var username = $('#usrnameCadID').val();
+			var usuario  = '{"perfil":"'+perfil+'","senha":"123456","username":"'+username+'"}';
+			cadastrarUsuarioAjax(usuario);
+			cpCloseModal('#modalCadUsuarioID');
+		}
+	});
+}
+
+function validarCadastro(){
+	var perfil   = $('#perfilCadID option:selected').text();
+	var username = $('#usrnameCadID').val();
+	
+	if(perfil == 'Selecione' | username == ''){
+		showMessageWarning('#msgCadUsuario', 'Informe todos os campos.');
+		return false;
+	} else {
+		return true;
+	}
+}
+
+function exibirMdUsuario(line){
 	var values = getLineTable(line);
-	$('#usrnameID').val(values[2]);
-	$('#hiddenID').val(values[0]);
-	configBotaoLabel(values[0]);
-	cpOpenModal('#modalCadUsuarioID');
+	PARAMS 	   = values[0];
+	cpOpenModal('#modalAtualizaUsuarioID');
 }
 
 function alterarStatus(){
@@ -163,18 +190,17 @@ function cadastrarUsuarioAjax(usuario){
 	});
 }
 
-function atualizarUsuarioAjax(usuario){
+function atualizarPerfilUsuarioAjax(perfil, id){
 	$.ajax({
 		type: 'PUT',
-		url: 'http://localhost:8080/api/usuarios/atualizar',
-		data: usuario,
+		url: 'http://localhost:8080/api/usuarios/atualizarperfil/'+perfil+'/id/'+id,
 		cache: false,
 		timeOut: 600000,
-		contentType: "application/json; charset=utf-8",
+		contentType: "text/html; charset=utf-8",
 		statusCode: {
 			200: function(usuarios){
 				buildTable(usuarios);
-				messagePanelSuccess('Usuário atualizado com sucesso.');
+				messagePanelSuccess('Perfil de usuário atualizado com sucesso.');
 			},
 			500: function(ex){
 				messagePanelError('Ocorreu um erro no cadastro. Tente mais tarde.');
@@ -185,9 +211,14 @@ function atualizarUsuarioAjax(usuario){
 }
 
 function initModalCadastro(){
-	var fields = ['#usrnameID'];
+	var fields = ['#usrnameCadID'];
 	var modal  = {'modal':'#modalCadUsuarioID','width':'16%','open':'#btnAbrirModalID','cancel':'#cancelaUsuarioID','fields':fields};
 	cpModal(modal);
+}
+
+function initModalAtualizar(){
+	var modal  = {'modal':'#modalAtualizaUsuarioID','width':'16%','open':'#btnAbrirModalID','cancel':'#cancelaAtualizaUsuarioID','fields':null};
+	cpModalInit(modal);
 }
 
 function initDialogStatus(){
@@ -229,7 +260,7 @@ function buildTable(usuarios){
            	   $('<td>').text(formatShortDate(usr.dtCadastro)),
            	   $('<td>').text(formatShortDate(usr.dtUltAlt)),
            	   $('<td onclick="exibirDialogStatus(this, '+usr.ativo+')">').html($('<a href="#"></a>').append(getBooleanIcon(usr.ativo))),
-           	   $('<td onclick="alterarUsuario(this)">').html($('<a href="#"></a>').prepend(getIcon(2)))
+           	   $('<td onclick="exibirMdUsuario(this)">').html($('<a href="#"></a>').prepend(getIcon(2)))
 	        );
 		 	
 		$('#tblUsuariosID').append($tr);
@@ -247,7 +278,7 @@ function configBotaoLabel(id){
 function montaListaPerfil(perfis){
 	var cont = 1;
 	perfis.forEach(function(p){
-		console.log(p);
-		$('#perfilID').append( new Option(p, cont++) );
+		$('#perfilCadID').append( new Option(p, cont++) );
+		$('#perfilAtlzrID').append( new Option(p, cont++) );
 	});
 }
